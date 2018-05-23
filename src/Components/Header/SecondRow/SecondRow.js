@@ -1,13 +1,34 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import './SecondRow.css';
 
-class SecondRow extends Component{
-	render(){
-		return(
-			<div className="SecondRow">
-				<h1>SecondRow</h1>
-			</div>
-		);
-	}
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+};
+
+function SecondRow(props) {
+  const { classes } = props;
+  return (
+    <div className={classes.root}>
+      <AppBar position="static" color="default">
+        <Toolbar>
+          <Typography variant="title" color="inherit" className="searchbox-div">
+            <input className="searchbox"/>
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
 
-export default SecondRow;
+SecondRow.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(SecondRow);

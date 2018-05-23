@@ -1,0 +1,9 @@
+.searchbox-div{
+	margin-left: auto!important;
+	margin-right: auto!important;
+}
+.searchbox{
+	width:40rem!important;
+	height: 1.4rem;
+	border: 1px solid black;
+}
