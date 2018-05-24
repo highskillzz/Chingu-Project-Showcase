@@ -27,13 +27,10 @@ function TopRow(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
           <Typography variant="title" color="inherit" className={classes.flex}>
-            Title
+            Chingu Project Showcase
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit">Chingu Voyage 5</Button>
         </Toolbar>
       </AppBar>
     </div>
