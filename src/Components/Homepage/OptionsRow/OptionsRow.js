@@ -23,13 +23,15 @@ class OptionsRow extends Component {
 	}
 
 	render() {
+		const { value } = this.state;
 		const listCategories = lists.map(name => (
-			<Tab label={name} value={name}/>
+			<Tab label={name}/>
 		));
+		console.log({value});
 		return (
 			<div className="OptionsRow">
 				<AppBar position="static" color="default">
-					<Tabs value={this.state.value} onChange={this.onClickTab}>{listCategories}</Tabs>
+					<Tabs value={value} onChange={this.onClickTab}>{listCategories}</Tabs>
 				</AppBar>
 			</div>
 		);
