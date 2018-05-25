@@ -6,9 +6,14 @@
 	width:40rem!important;
 	height: 2rem;
 	border: 1px solid black;
+	padding-left: 10px;
+	font-family: Calibri;
+	font-size:1.4rem;
 }
 .searchbtn{
 	margin-left: 5px !important;
+	position: relative;
+	top:-0.15rem;
 }
 .SecondRow{
 	margin: 2% 0%;
