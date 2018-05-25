@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import Badge from "@material-ui/core/Badge";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Button from "@material-ui/core/Button";
 import "./OptionsRow.css";
 
 const lists = [
