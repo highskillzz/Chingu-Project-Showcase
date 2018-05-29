@@ -1,9 +1,13 @@
+//Renders the options row, listing the categories
+//This is the top row of the content component
+
 import React, { Component } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import "./OptionsRow.css";
 
+//contains the list of all categories
 const lists = [
 	"All",
 	"Web Development",
@@ -18,6 +22,8 @@ class OptionsRow extends Component {
 		this.state = { value: 0 };
 		this.onClickTab = this.onClickTab.bind(this);
 	}
+	
+	//function to change the active tab
 	onClickTab(event,value) {
 		this.setState({ value });
 	}

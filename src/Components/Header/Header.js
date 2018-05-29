@@ -1,3 +1,5 @@
+//This page renders the header of the site
+
 import React, { Component } from 'react';
 import TopRow from "./TopRow/TopRow";
 import SecondRow from "./SecondRow/SecondRow";
