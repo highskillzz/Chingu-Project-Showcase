@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import React, { Component } from "react";
 
 import "./Footer.css";
-import logo from "../Common/Images/logoFooter.svg";
+import logo from "../Common/Images/logo.png";
 
 /**
  * <div className="footer-overlay"> - Just to give full width white bar.
@@ -59,15 +59,10 @@ class Footer extends Component {
               <ul>
                 <li>My Account</li>
                 <li>Community</li>
-                <li>Chingu</li>
-                <li>Chingu.io</li>
+                <li>Github</li>
+                <li>chingu.io</li>
               </ul>
             </div>
-          </div>
-          <div className="footer__logo2">
-            <Link to="/" className="router-link-reset">
-              <img src={logo} alt="Project Showcase" />
-            </Link>
           </div>
         </div>
       </div>
