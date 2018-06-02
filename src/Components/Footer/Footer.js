@@ -1,20 +1,13 @@
 /**
  * This component have two columns.
  * First column just show company logo
- *
- * Middle column (.footer_links) contain all kind of links seperated into another 4 columns. When hit 950px those 4 columns
- * start to wrap to suit mobile view.
+ * Rest all columns (.footer_links) contain all kind of links which have been seperated into another 4 columns.
  **/
-
 import { Link } from "react-router-dom";
 import React, { Component } from "react";
-
-import "./Footer.css";
 import logo from "../Common/Images/logo.png";
+import "./Footer.css";
 
-/**
- * <div className="footer-overlay"> - Just to give full width white bar.
- **/
 class Footer extends Component {
   render() {
     return (
@@ -31,15 +24,15 @@ class Footer extends Component {
               <ul>
                 <li>Help</li>
                 <li>Facebook</li>
-                <li>Twitter</li>
-                <li>Instagram</li>
+                <li>Github</li>
+                <li>Medium</li>
               </ul>
             </div>
             <div className="footer__links__column">
               <div>GENERAL</div>
               <ul>
                 <li>About</li>
-                <li>Medium</li>
+                <li>Blogs</li>
                 <li>Careers</li>
                 <li>Contact</li>
               </ul>
