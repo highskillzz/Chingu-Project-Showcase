@@ -1,7 +1,6 @@
 /**
- * This component have three columns.
- * First and Last column just show same company logo and when hit 9500px first column logo hide and
- * second column logo wrap to next line.
+ * This component have two columns.
+ * First column just show company logo
  *
  * Middle column (.footer_links) contain all kind of links seperated into another 4 columns. When hit 950px those 4 columns
  * start to wrap to suit mobile view.
