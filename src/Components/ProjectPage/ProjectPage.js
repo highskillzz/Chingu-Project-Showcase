@@ -8,6 +8,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
+import * as Icons from "../Common/Icons/Icons";
 import "./ProjectPage.css";
 
 const BrowserSupportList = [
@@ -16,19 +17,19 @@ const BrowserSupportList = [
 		support: "true"
 	},
 	{
-		browserName: "Chrome",
+		browserName: "Firefox",
 		support: "true"
 	},
 	{
-		browserName: "Chrome",
+		browserName: "InternetExplorer",
 		support: "true"
 	},
 	{
-		browserName: "Chrome",
+		browserName: "Opera",
 		support: "true"
 	},
 	{
-		browserName: "Chrome",
+		browserName: "Edge",
 		support: "true"
 	}
 ];
@@ -67,6 +68,17 @@ const features = [
 	},
 	{
 		descripton: "Transform request and response data"
+	}
+];
+
+const resources = [
+	{
+		title: "How to Contribute",
+		link: ""
+	},
+	{
+		title: "Stacks Used",
+		link: ""
 	}
 ];
 
@@ -143,9 +155,18 @@ class BrowserSupport extends Component {
 				<Checkbox checked={browserSupport.support} />
 			</td>
 		));
-		const TableHeadRow = BrowserSupportList.map(browserSupport => (
-			<th>{browserSupport.browserName}</th>
-		));
+		const TableHeadRow = BrowserSupportList.map(function(
+			browserSupport,
+			index
+		) {
+			const browserName = browserSupport.browserName;
+			const IconName = Icons[browserName];
+			return (
+				<th>
+					<IconName />
+				</th>
+			);
+		});
 		return (
 			<table>
 				<thead>
@@ -201,16 +222,6 @@ class InstallationComponent extends Component {
 	}
 }
 
-const resources = [
-	{
-		title: "How to Contribute",
-		link: ""
-	},
-	{
-		title: "Stacks Used",
-		link: ""
-	}
-];
 class ResourcesComponent extends Component {
 	render() {
 		const resourcesList = resources.map(resource => (
@@ -224,20 +235,16 @@ class ResourcesComponent extends Component {
 	}
 }
 
-const keywordsList=["XML","HTTP","NodeJs"];
+const keywordsList = ["XML", "HTTP", "NodeJs"];
 
-class KeywordsComponent extends Component{
-	render(){
-		const KeywordRow=keywordsList.map((keyword)=>
+class KeywordsComponent extends Component {
+	render() {
+		const KeywordRow = keywordsList.map(keyword => (
 			<Button variant="outlined" className="keyword-btn">
-        {keyword}
-      </Button>
-		);
-		return(
-			<div className="keywords-list">
-			{KeywordRow}
-			</div>
-		);
+				{keyword}
+			</Button>
+		));
+		return <div className="keywords-list">{KeywordRow}</div>;
 	}
 }
 
