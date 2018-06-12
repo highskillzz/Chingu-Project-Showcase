@@ -1,0 +1,39 @@
+.project-page{
+	margin-left:7.5%;
+	margin-right: 7.5%;
+}
+.box{
+	border:1px solid black;
+	padding: 3.5px 12px 3.5px 12px;
+}
+.detail{
+	margin-bottom: 1.5%;
+	margin-right: 2%;
+	color:white;
+}
+.name{
+	background-color:#333;
+}
+.content{
+	background-color:#cb3837;
+}
+.project-info{
+	margin-top: 1%;
+}
+.project-info{
+	line-height: 1.5;
+}
+.feature-list li{
+	line-height: 1.75;
+}
+table, td, th {    
+    border: 1px solid #ddd;
+    text-align: left;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    padding: 25px;
+}
