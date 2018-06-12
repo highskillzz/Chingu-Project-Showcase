@@ -9,6 +9,29 @@ import TableRow from "@material-ui/core/TableRow";
 import Checkbox from "@material-ui/core/Checkbox";
 import "./ProjectPage.css";
 
+const BrowserSupportList = [
+	{
+		browserName: "Chrome",
+		support: "true"
+	},
+	{
+		browserName: "Chrome",
+		support: "true"
+	},
+	{
+		browserName: "Chrome",
+		support: "true"
+	},
+	{
+		browserName: "Chrome",
+		support: "true"
+	},
+	{
+		browserName: "Chrome",
+		support: "true"
+	}
+];
+
 const details = [
 	{
 		name: "npm",
@@ -94,56 +117,37 @@ class ProjectPage extends Component {
 						<h2>Browser Support</h2>
 						<BrowserSupport />
 					</Grid>
+					<Grid item sm={12}>
+						<h2>Installation</h2>
+						<InstallationComponent />
+					</Grid>
+					<Grid item sm={12}>
+						<h2>Resources</h2>
+						<ResourcesComponent />
+					</Grid>
 				</Grid>
 			</div>
 		);
 	}
 }
 
-const BrowserSupportList=[
-	{
-		browserName:"Chrome",
-		support:"true"
-	},
-	{
-		browserName:"Chrome",
-		support:"true"
-	},
-	{
-		browserName:"Chrome",
-		support:"true"
-	},
-	{
-		browserName:"Chrome",
-		support:"true"
-	},
-	{
-		browserName:"Chrome",
-		support:"true"
-	}
-];
-
 class BrowserSupport extends Component {
 	render() {
-		const TableCellCheckRow = BrowserSupportList.map((browserSupport)=>
+		const TableCellCheckRow = BrowserSupportList.map(browserSupport => (
 			<td>
 				<Checkbox checked={browserSupport.support} />
 			</td>
-		);
-		const TableHeadRow=BrowserSupportList.map((browserSupport)=>
+		));
+		const TableHeadRow = BrowserSupportList.map(browserSupport => (
 			<th>{browserSupport.browserName}</th>
-		);
+		));
 		return (
 			<table>
 				<thead>
-					<tr>
-						{TableHeadRow}
-					</tr>
+					<tr>{TableHeadRow}</tr>
 				</thead>
 				<tbody>
-					<tr>
-						{TableCellCheckRow}
-					</tr>
+					<tr>{TableCellCheckRow}</tr>
 				</tbody>
 			</table>
 		);
@@ -158,6 +162,42 @@ class DetailComponent extends Component {
 				<span className="content box">{this.props.content}</span>
 			</span>
 		);
+	}
+}
+
+class InstallationComponent extends Component {
+	render() {
+		return (
+			<div className="install">
+				<p>Using npm</p>
+				<div className="highlight sh">npm install axios</div>
+				<p>Using npm</p>
+				<div className="highlight sh">npm install axios</div>
+				<p>Using npm</p>
+				<div className="highlight sh">npm install axios</div>
+			</div>
+		);
+	}
+}
+
+const resources=[
+	{
+		title:"How to Contribute",
+		link:""
+	},
+	{
+		title:"Stacks Used",
+		link:""
+	}
+];
+class ResourcesComponent extends Component {
+	render() {
+		const resourcesList = resources.map(resource => (
+			<ul>
+				<li><a href="#">{resource.title}</a></li>
+			</ul>
+		));
+		return <div className="resources">{resourcesList}</div>;
 	}
 }
 
