@@ -9,78 +9,8 @@ import TableRow from "@material-ui/core/TableRow";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import * as Icons from "../Common/Icons/Icons";
+import {keywordsList,BrowserSupportList,details,features,resources,installation} from "../../models/staticModel";
 import "./ProjectPage.css";
-
-const BrowserSupportList = [
-	{
-		browserName: "Chrome",
-		support: "true"
-	},
-	{
-		browserName: "Firefox",
-		support: "true"
-	},
-	{
-		browserName: "InternetExplorer",
-		support: "true"
-	},
-	{
-		browserName: "Opera",
-		support: "true"
-	},
-	{
-		browserName: "Edge",
-		support: "true"
-	}
-];
-
-const details = [
-	{
-		name: "npm",
-		content: "v18.0.0"
-	},
-	{
-		name: "build",
-		content: "failing"
-	},
-	{
-		name: "chat",
-		content: "gitter"
-	},
-	{
-		name: "contributors",
-		content: "4"
-	}
-];
-
-const features = [
-	{
-		descripton: "Make XMLHttpRequests from the browser"
-	},
-	{
-		descripton: "Make http requests from node.js"
-	},
-	{
-		descripton: "Supports the Promise API"
-	},
-	{
-		descripton: "Intercept request and response"
-	},
-	{
-		descripton: "Transform request and response data"
-	}
-];
-
-const resources = [
-	{
-		title: "How to Contribute",
-		link: ""
-	},
-	{
-		title: "Stacks Used",
-		link: ""
-	}
-];
 
 class ProjectPage extends Component {
 	constructor(props) {
@@ -191,31 +121,12 @@ class DetailComponent extends Component {
 	}
 }
 
-const installation = [
-	{
-		title: "Using npm",
-		code: "npm install axios"
-	},
-	{
-		title: "Using npm",
-		code: "npm install axios"
-	},
-	{
-		title: "Using npm",
-		code: "npm install axios"
-	},
-	{
-		title: "Using npm",
-		code: "npm install axios"
-	}
-];
-
 class InstallationComponent extends Component {
 	render() {
 		const installList = installation.map(steps => (
 			<div className="install-step">
-				<p>Using npm</p>
-				<div className="highlight sh">npm install axios</div>
+				<p>{steps.title}</p>
+				<div className="highlight sh">{steps.code}</div>
 			</div>
 		));
 		return <div className="install">{installList}</div>;
@@ -227,15 +138,13 @@ class ResourcesComponent extends Component {
 		const resourcesList = resources.map(resource => (
 			<ul>
 				<li>
-					<a href="#">{resource.title}</a>
+					<a href={resource.link}>{resource.title}</a>
 				</li>
 			</ul>
 		));
 		return <div className="resources">{resourcesList}</div>;
 	}
 }
-
-const keywordsList = ["XML", "HTTP", "NodeJs"];
 
 class KeywordsComponent extends Component {
 	render() {
