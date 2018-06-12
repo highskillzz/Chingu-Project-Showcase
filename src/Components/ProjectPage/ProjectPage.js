@@ -7,6 +7,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Checkbox from "@material-ui/core/Checkbox";
+import Button from "@material-ui/core/Button";
 import "./ProjectPage.css";
 
 const BrowserSupportList = [
@@ -125,6 +126,10 @@ class ProjectPage extends Component {
 						<h2>Resources</h2>
 						<ResourcesComponent />
 					</Grid>
+					<Grid item sm={12}>
+						<h2>Keywords</h2>
+						<KeywordsComponent />
+					</Grid>
 				</Grid>
 			</div>
 		);
@@ -165,39 +170,74 @@ class DetailComponent extends Component {
 	}
 }
 
+const installation = [
+	{
+		title: "Using npm",
+		code: "npm install axios"
+	},
+	{
+		title: "Using npm",
+		code: "npm install axios"
+	},
+	{
+		title: "Using npm",
+		code: "npm install axios"
+	},
+	{
+		title: "Using npm",
+		code: "npm install axios"
+	}
+];
+
 class InstallationComponent extends Component {
 	render() {
-		return (
-			<div className="install">
-				<p>Using npm</p>
-				<div className="highlight sh">npm install axios</div>
-				<p>Using npm</p>
-				<div className="highlight sh">npm install axios</div>
+		const installList = installation.map(steps => (
+			<div className="install-step">
 				<p>Using npm</p>
 				<div className="highlight sh">npm install axios</div>
 			</div>
-		);
+		));
+		return <div className="install">{installList}</div>;
 	}
 }
 
-const resources=[
+const resources = [
 	{
-		title:"How to Contribute",
-		link:""
+		title: "How to Contribute",
+		link: ""
 	},
 	{
-		title:"Stacks Used",
-		link:""
+		title: "Stacks Used",
+		link: ""
 	}
 ];
 class ResourcesComponent extends Component {
 	render() {
 		const resourcesList = resources.map(resource => (
 			<ul>
-				<li><a href="#">{resource.title}</a></li>
+				<li>
+					<a href="#">{resource.title}</a>
+				</li>
 			</ul>
 		));
 		return <div className="resources">{resourcesList}</div>;
+	}
+}
+
+const keywordsList=["XML","HTTP","NodeJs"];
+
+class KeywordsComponent extends Component{
+	render(){
+		const KeywordRow=keywordsList.map((keyword)=>
+			<Button variant="outlined" className="keyword-btn">
+        {keyword}
+      </Button>
+		);
+		return(
+			<div className="keywords-list">
+			{KeywordRow}
+			</div>
+		);
 	}
 }
 
