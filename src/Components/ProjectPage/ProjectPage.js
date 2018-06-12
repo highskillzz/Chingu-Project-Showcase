@@ -30,13 +30,13 @@ class ProjectPage extends Component {
 		return (
 			<div className="project-page">
 				<Grid container spacing={24}>
-					<Grid item sm={12}>
+					<Grid item sm={12} className="grid">
 						<h1>Sample Project</h1>
 					</Grid>
-					<Grid item sm={12}>
+					<Grid item sm={12} className="grid">
 						{DetailsRow}
 					</Grid>
-					<Grid item sm={12}>
+					<Grid item sm={12} className="grid">
 						<div className="project-info">
 							<p>
 								When an open source project starts, it is
@@ -46,29 +46,31 @@ class ProjectPage extends Component {
 								contributors come to
 							</p>
 						</div>
-					</Grid>
-					<Grid item sm={12}>
 						<hr />
 					</Grid>
-					<Grid item sm={12}>
+					<Grid item sm={12} className="grid">
 						<div className="feature-list">
 							<h2>Features</h2>
 							{featureList}
 						</div>
+						<hr />
 					</Grid>
-					<Grid item>
+					<Grid item className="grid">
 						<h2>Browser Support</h2>
 						<BrowserSupport />
 					</Grid>
-					<Grid item sm={12}>
+					<Grid item sm={12} className="grid">
+					<hr />
 						<h2>Installation</h2>
 						<InstallationComponent />
+						<hr />
 					</Grid>
-					<Grid item sm={12}>
+					<Grid item sm={12} className="grid">
 						<h2>Resources</h2>
 						<ResourcesComponent />
+						<hr />
 					</Grid>
-					<Grid item sm={12}>
+					<Grid item sm={12} className="grid">
 						<h2>Keywords</h2>
 						<KeywordsComponent />
 					</Grid>

@@ -44,19 +44,19 @@ const details = [
 
 const features = [
 	{
-		descripton: "Make XMLHttpRequests from the browser"
+		descripton: "Find Partners for project"
 	},
 	{
-		descripton: "Make http requests from node.js"
+		descripton: "Able to open source the project"
 	},
 	{
-		descripton: "Supports the Promise API"
+		descripton: "Supports pair programming"
 	},
 	{
-		descripton: "Intercept request and response"
+		descripton: "Tracks specific user according to their skills"
 	},
 	{
-		descripton: "Transform request and response data"
+		descripton: "Able to launch call for help in sorting issue"
 	}
 ];
 
@@ -75,15 +75,15 @@ const resources = [
 const installation = [
 	{
 		title: "Using npm",
-		code: "npm install axios"
+		code: "npm start"
 	},
 	{
-		title: "Using bower",
-		code: "bower install axios"
+		title: "Using yarn",
+		code: "yarn run"
 	},
 	{
-		title: "Using cdn",
-		code: "<script src='https://unpkg.com/axios/dist/axios.min.js'></script>"
+		title: "On deployed version",
+		code: "https://www.projectongithub.io"
 	}
 ];
 

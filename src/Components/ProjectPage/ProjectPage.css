@@ -38,7 +38,7 @@ table {
 }
 th,
 td {
-	padding: 15px;
+	padding: 5px;
 	text-align: center;
 }
 th svg {
@@ -60,4 +60,7 @@ th svg {
 }
 .keyword-btn {
 	margin-right: 2.5% !important;
+}
+.project-page h2{
+	margin-top: 0px;
 }
