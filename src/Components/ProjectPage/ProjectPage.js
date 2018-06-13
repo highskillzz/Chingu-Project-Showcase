@@ -1,11 +1,5 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import * as Icons from "../Common/Icons/Icons";
@@ -20,13 +14,13 @@ class ProjectPage extends Component {
 	}
 	render() {
 		//renders out the details like build, contributors, chat and npm version.
-		const DetailsRow = details.map(detail => (
-			<DetailComponent name={detail.name} content={detail.content} />
+		const DetailsRow = details.map((detail,index) => (
+			<DetailComponent key={index} name={detail.name} content={detail.content} />
 		));
 
 		//renders all the features of the project
-		const featureList = features.map(feature => (
-			<li>{feature.descripton}</li>
+		const featureList = features.map((feature,index) => (
+			<li key={index}>{feature.descripton}</li>
 		));
 
 		return (
@@ -85,8 +79,8 @@ class ProjectPage extends Component {
 //renders the Browser Support
 class BrowserSupport extends Component {
 	render() {
-		const TableCellCheckRow = BrowserSupportList.map(browserSupport => (
-			<td>
+		const TableCellCheckRow = BrowserSupportList.map((browserSupport,index) => (
+			<td key={index}>
 				<Checkbox checked={browserSupport.support} />
 			</td>
 		));
@@ -97,7 +91,7 @@ class BrowserSupport extends Component {
 			const browserName = browserSupport.browserName;
 			const IconName = Icons[browserName];
 			return (
-				<th>
+				<th key={index}>
 					<IconName />
 				</th>
 			);
@@ -137,8 +131,8 @@ class InstallationComponent extends Component {
 				<span />
 			)
 		);
-		const installList = installation.map(steps => (
-			<div className="install-step">
+		const installList = installation.map((steps,index) => (
+			<div className="install-step" key={index}>
 				<li>{steps.title}</li>
 				<Code code={steps.code} />
 			</div>
@@ -150,8 +144,8 @@ class InstallationComponent extends Component {
 //renders the resources for the project
 class ResourcesComponent extends Component {
 	render() {
-		const resourcesList = resources.map(resource => (
-			<ul>
+		const resourcesList = resources.map((resource,index) => (
+			<ul key={index}>
 				<li>
 					<a href={resource.link}>{resource.title}</a>
 				</li>
@@ -164,8 +158,8 @@ class ResourcesComponent extends Component {
 //renders the keywords for the project 
 class KeywordsComponent extends Component {
 	render() {
-		const KeywordRow = keywordsList.map(keyword => (
-			<Button variant="outlined" className="keyword-btn">
+		const KeywordRow = keywordsList.map((keyword,index) => (
+			<Button key={index} variant="outlined" className="keyword-btn">
 				{keyword}
 			</Button>
 		));
