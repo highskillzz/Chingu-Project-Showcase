@@ -19,10 +19,12 @@ class ProjectPage extends Component {
 		this.state = {};
 	}
 	render() {
+		//renders out the details like build, contributors, chat and npm version.
 		const DetailsRow = details.map(detail => (
 			<DetailComponent name={detail.name} content={detail.content} />
 		));
 
+		//renders all the features of the project
 		const featureList = features.map(feature => (
 			<li>{feature.descripton}</li>
 		));
@@ -80,6 +82,7 @@ class ProjectPage extends Component {
 	}
 }
 
+//renders the Browser Support
 class BrowserSupport extends Component {
 	render() {
 		const TableCellCheckRow = BrowserSupportList.map(browserSupport => (
@@ -112,6 +115,7 @@ class BrowserSupport extends Component {
 	}
 }
 
+//renders the details component
 class DetailComponent extends Component {
 	render() {
 		return (
@@ -123,18 +127,27 @@ class DetailComponent extends Component {
 	}
 }
 
+//renders the steps required for installation
 class InstallationComponent extends Component {
 	render() {
+		const Code=props=>(
+			props.code!==undefined?(
+				<div className="highlight sh">{props.code}</div>
+			):(
+				<span />
+			)
+		);
 		const installList = installation.map(steps => (
 			<div className="install-step">
-				<p>{steps.title}</p>
-				<div className="highlight sh">{steps.code}</div>
+				<li>{steps.title}</li>
+				<Code code={steps.code} />
 			</div>
 		));
 		return <div className="install">{installList}</div>;
 	}
 }
 
+//renders the resources for the project
 class ResourcesComponent extends Component {
 	render() {
 		const resourcesList = resources.map(resource => (
@@ -148,6 +161,7 @@ class ResourcesComponent extends Component {
 	}
 }
 
+//renders the keywords for the project 
 class KeywordsComponent extends Component {
 	render() {
 		const KeywordRow = keywordsList.map(keyword => (
