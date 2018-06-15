@@ -61,6 +61,10 @@ th svg {
 .keyword-btn {
 	margin-right: 2.5% !important;
 }
+
+.project-page{
+	margin-top: 40px;
+}
 .project-page h2{
 	margin-top: 0px;
 }
