@@ -10,13 +10,13 @@ const User=require("../models/User");
  const RootQuery=new GraphQLObjectType({
     name:"RootQueryType",
     fields: () => ({
-        users:{
+        projects:{
             type:new GraphQLList(ProjectType),
             resolve(parentValues,args,request){
                 return Project.find();
             }
         },
-        user:{
+        project:{
             type:ProjectType,
             args:{id:{type:new GraphQLNonNull(GraphQLID)}},
             resolve(parentValue,args,request){
