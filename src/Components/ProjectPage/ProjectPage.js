@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import * as Icons from "../Common/Icons/Icons";
 import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
-import Divider from '@material-ui/core/Divider';
+import Divider from "@material-ui/core/Divider";
 
 import {
   keywordsList,
@@ -48,12 +48,7 @@ class ProjectPage extends Component {
     //renders all the features of the project
     const featureList = features.map((feature, index) => (
       <li key={index}>{feature.descripton}</li>
-	));
-	
-
-
-	
-
+    ));
 
     return (
       <div className="project-page">
@@ -68,34 +63,34 @@ class ProjectPage extends Component {
           </Grid>
           <Grid item sm={12} className="grid">
             <div className="project-info">
-              <p>
-                {description}
-              </p>
+              <p>{description}</p>
             </div>
             <hr />
           </Grid>
 
           <Grid item sm={12} md={6} className="grid">
-            <Grid item sm={12} className="grid">
-              <div className="feature-list">
-                <h2>Features</h2>
-                {featureList}
-              </div>
-              <hr />
-            </Grid>
-            <Grid item className="grid">
-              <h2>Browser Support</h2>
-              <BrowserSupport />
-            </Grid>
+              <Grid item sm={12} className="grid">
+                <div className="feature-list">
+                  <h2>Features</h2>
+                  {featureList}
+                </div>
+                <hr />
+              </Grid>
+              <Grid item className="grid">
+                <h2>Browser Support</h2>
+                <BrowserSupport />
+              </Grid>
           </Grid>
 
           <Grid item md={1} className="grid">
-            <div />
+            <div  />
           </Grid>
 
           <Hidden smDown>
             <Grid item md={5} className="grid">
-              <Grid container spacing={16}>
+            <h2 style={{textAlign:"center",marginRight:"9%",marginBottom:"6%"}}>Overview</h2>
+
+            <Grid container spacing={16}>
                 {Overview}
               </Grid>
             </Grid>
@@ -219,8 +214,8 @@ class OverviewComponent extends Component {
     return (
       <Grid item md={6} className="grid">
         <div className="">
-		  <h3>{this.props.name}</h3>
-		  <Divider style={{width:"81%",backgroundColor:"black"}}/>
+          <h3>{this.props.name}</h3>
+          <Divider style={{ width: "81%", backgroundColor: "black" }} />
           <p>{this.props.content}</p>
         </div>
       </Grid>
