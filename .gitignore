@@ -2,7 +2,9 @@ node_modules
 
 .storybook
 
+/server_graphql/node_modules
 
 /src/stories
 
 randomimages
+
