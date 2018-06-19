@@ -34,10 +34,10 @@ const mutation = new GraphQLObjectType({
       args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
         description: { type: new GraphQLNonNull(GraphQLString) },
-        image: { type:GraphQLString },
-        // contributor:{ type: new GraphQLNonNull(new GraphQLList(GraphQLID))
-        contributor:{ type: new GraphQLNonNull(GraphQLID)
-         },
+        image: { type: GraphQLString },
+        contributor: {
+          type: new GraphQLNonNull(GraphQLID)
+        }
       },
       resolve(parentValues, args, request) {
         return Project.create(args);
@@ -45,4 +45,7 @@ const mutation = new GraphQLObjectType({
     }
   })
 });
+
+// contributor:{ type: new GraphQLNonNull(new GraphQLList(GraphQLID))
+
 module.exports = mutation;

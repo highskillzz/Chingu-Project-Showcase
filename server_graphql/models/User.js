@@ -12,7 +12,7 @@ const UserSchema = new Schema({
   githubProfile: { type: String, required: true },
   projects:[{
     type: Schema.Types.ObjectId,
-    ref: Project
+    ref: "project"
   }]
 });
 

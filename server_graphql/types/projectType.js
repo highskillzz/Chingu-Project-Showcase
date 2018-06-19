@@ -1,5 +1,6 @@
 const graphql = require("graphql");
 const UserType = require("./userType");
+const ResourceType = require("./resourceType");
 const User = require("../models/User");
 const Project = require("../models/Project");
 
@@ -20,6 +21,12 @@ const ProjectType = new GraphQLObjectType({
       type: new GraphQLList(UserType),
       resolve(parentValues, args, request) {
         return Project.findContributors(parentValues.id);
+      }
+    },
+    resources:{
+      type: new GraphQLList(ResourceType),
+      resolve(parentValues, args, request) {
+        return Project.findResources(parentValues.id);
       }
     }
   })

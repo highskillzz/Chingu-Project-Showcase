@@ -13,14 +13,14 @@ const User=require("../models/User");
         projects:{
             type:new GraphQLList(ProjectType),
             resolve(parentValues,args,request){
-                return Project.find().populate("contributors");
+                return Project.find().populate("contributors").populate("resources");
             }
         },
         project:{
             type:ProjectType,
             args:{id:{type:new GraphQLNonNull(GraphQLID)}},
             resolve(parentValue,args,request){
-                return Project.findById(args.id).populate("contributors")
+                return Project.findById(args.id).populate("contributors").populate("resources");
             }
         },
         users:{

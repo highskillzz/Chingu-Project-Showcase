@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const User = require("./User");
+const Resource = require("./Resource");
 
 const ProjectSchema = new Schema({
   name: { type: String, required: true },
@@ -12,12 +13,17 @@ const ProjectSchema = new Schema({
   chat:{ type: String, required: true },
   features:[{ type: String, required: true }],
   keywords:[{ type: String, required: true }],
-  resources:[{ type: String}],
+  resources: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "resource"
+    }
+  ],
   browserSupport:[{ type: String, required: true }],
   contributors: [
     {
       type: Schema.Types.ObjectId,
-      ref: User
+      ref: "user"
     }
   ]
   // in V1 can make the contributors to be an array of string
@@ -38,6 +44,14 @@ ProjectSchema.methods.findContributors = function(id) {
     .populate(contributors)
     .then(project => {
       return project.contributors;
+    });
+};
+
+ProjectSchema.methods.findResources = function(id) {
+  return this.findById(id)
+    .populate(resources)
+    .then(project => {
+      return project.resources;
     });
 };
 
