@@ -7,7 +7,6 @@ import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
 // import {
 //   keywordsList,
