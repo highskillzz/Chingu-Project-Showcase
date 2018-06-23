@@ -1,9 +1,7 @@
 const graphql = require("graphql");
-const UserType = require("./userType");
 const User = require("../models/User");
 const Project = require("../models/Project");
 const Resource = require("../models/Resource");
-const ProjectType = require("./projectType");
 
 const {
     GraphQLObjectType,
@@ -35,3 +33,7 @@ const {
   });
 
   module.exports=ResourceType;
+
+
+const UserType = require("./userType");
+const ProjectType = require("./projectType");

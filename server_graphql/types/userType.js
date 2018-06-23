@@ -1,5 +1,4 @@
 const graphql = require("graphql");
-const ProjectType = require("./projectType");
 
 const { GraphQLObjectType, GraphQLString, GraphQLList } = graphql;
 
@@ -14,6 +13,7 @@ const UserType = new GraphQLObjectType({
     email: { type: GraphQLString },
     projects: {
       type: new GraphQLList(ProjectType),
+      // type: ProjectType,
       resolve(parentValues, args) {
         return new Promise((resolve, reject) => {
           User.findById(parentValues.id)
@@ -28,3 +28,6 @@ const UserType = new GraphQLObjectType({
 });
 
 module.exports = UserType;
+
+// This is here to prevent circular dependencies problem which will lead to the formation of infinite loop
+const ProjectType = require("./projectType");

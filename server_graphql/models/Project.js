@@ -1,23 +1,27 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+
+// Below is for development
+
+
 const ProjectSchema = new Schema({
-  name: { type: String, required: true },
-  description: { type: String, required: true },
+  name: { type: String },
+  description: { type: String },
   image: String,
   likes: { type: Number, default: 0 },
-  build: { type: String, required: true },
-  version: { type: String, required: true },
-  chat: { type: String, required: true },
-  features: [{ type: String, required: true }],
-  keywords: [{ type: String, required: true }],
+  build: { type: String },
+  version: { type: String },
+  chat: { type: String },
+  features: [{ type: String }],
+  keywords: [{ type: String }],
   resources: [
     {
       type: Schema.Types.ObjectId,
       ref: "resource"
     }
   ],
-  browserSupport: [{ type: String, required: true }],
+  browserSupport: [{ type: String }],
   contributors: [
     {
       type: Schema.Types.ObjectId,
@@ -25,6 +29,33 @@ const ProjectSchema = new Schema({
     }
   ]
 });
+
+// Below is for production
+
+// const ProjectSchema = new Schema({
+//   name: { type: String, required: true },
+//   description: { type: String, required: true },
+//   image: String,
+//   likes: { type: Number, default: 0 },
+//   build: { type: String, required: true },
+//   version: { type: String, required: true },
+//   chat: { type: String, required: true },
+//   features: [{ type: String, required: true }],
+//   keywords: [{ type: String, required: true }],
+//   resources: [
+//     {
+//       type: Schema.Types.ObjectId,
+//       ref: "resource"
+//     }
+//   ],
+//   browserSupport: [{ type: String, required: true }],
+//   contributors: [
+//     {
+//       type: Schema.Types.ObjectId,
+//       ref: "user"
+//     }
+//   ]
+// });
 
 // in V1 can make the contributors to be an array of string
 
