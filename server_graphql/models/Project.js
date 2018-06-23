@@ -6,26 +6,27 @@ const ProjectSchema = new Schema({
   description: { type: String, required: true },
   image: String,
   likes: { type: Number, default: 0 },
-  build:{ type: String, required: true },
-  version:{ type: String, required: true },
-  chat:{ type: String, required: true },
-  features:[{ type: String, required: true }],
-  keywords:[{ type: String, required: true }],
+  build: { type: String, required: true },
+  version: { type: String, required: true },
+  chat: { type: String, required: true },
+  features: [{ type: String, required: true }],
+  keywords: [{ type: String, required: true }],
   resources: [
     {
       type: Schema.Types.ObjectId,
       ref: "resource"
     }
   ],
-  browserSupport:[{ type: String, required: true }],
+  browserSupport: [{ type: String, required: true }],
   contributors: [
     {
       type: Schema.Types.ObjectId,
       ref: "user"
     }
   ]
-  // in V1 can make the contributors to be an array of string
 });
+
+// in V1 can make the contributors to be an array of string
 
 // add comments later on to the schema
 
