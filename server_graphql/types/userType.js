@@ -15,7 +15,13 @@ const UserType = new GraphQLObjectType({
     projects: {
       type: new GraphQLList(ProjectType),
       resolve(parentValues, args) {
-        return User.findById(parentValues.id).populate("projects");
+        return new Promise((resolve, reject) => {
+          User.findById(parentValues.id)
+            .populate("projects")
+            .then(user => {
+              resolve(user.projects);
+            });
+        });
       }
     }
   })

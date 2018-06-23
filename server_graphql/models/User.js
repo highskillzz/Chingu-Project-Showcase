@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt-nodejs");
-const Project=require("./Project");
 
 
 const UserSchema = new Schema({
@@ -35,7 +34,7 @@ UserSchema.pre("save", function save(next) {
   });
 });
 
-UserSchema.methods.comparePassword = function comparePassword(
+UserSchema.statics.comparePassword = function comparePassword(
   candidatePassword,
   cb
 ) {

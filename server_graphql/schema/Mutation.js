@@ -40,7 +40,19 @@ const mutation = new GraphQLObjectType({
         }
       },
       resolve(parentValues, args, request) {
-        return Project.create(args);
+        // return Project.create(args);
+
+        return new Promise((resolve, reject) => {
+          
+          Project.create(args).then((project) => {
+            project.contributors.push(args.contributor);
+            project.save();
+            resolve(project);
+          })
+
+        })
+
+
       }
     }
   })

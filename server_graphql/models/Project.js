@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const User = require("./User");
-const Resource = require("./Resource");
 
 const ProjectSchema = new Schema({
   name: { type: String, required: true },
@@ -31,7 +29,7 @@ const ProjectSchema = new Schema({
 
 // add comments later on to the schema
 
-ProjectSchema.methods.like = function likeProject(id) {
+ProjectSchema.statics.like = function likeProject(id) {
   const Project = mongoose.model("project", ProjectSchema);
   return Project.findById(id).then(project => {
     ++project.likes;
@@ -39,7 +37,7 @@ ProjectSchema.methods.like = function likeProject(id) {
   });
 };
 
-ProjectSchema.methods.findContributors = function(id) {
+ProjectSchema.statics.findContributors = function(id) {
   return this.findById(id)
     .populate(contributors)
     .then(project => {
@@ -47,7 +45,7 @@ ProjectSchema.methods.findContributors = function(id) {
     });
 };
 
-ProjectSchema.methods.findResources = function(id) {
+ProjectSchema.statics.findResources = function(id) {
   return this.findById(id)
     .populate(resources)
     .then(project => {

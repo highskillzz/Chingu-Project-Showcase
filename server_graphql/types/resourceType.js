@@ -21,7 +21,14 @@ const {
       project:{
         type:ProjectType,
         resolve(parentValues,args){
-          return Project.findById(parentValues.id).populate("resources")
+          // return Project.findById(parentValues.id).populate("resources")
+          return new Promise((resolve, reject) => {
+            Project.findById(parentValues.id)
+              .populate("resources")
+              .then(project => {
+                resolve(project.resources);
+              });
+          });
         }
       }
     })
