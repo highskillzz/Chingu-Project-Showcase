@@ -35,24 +35,12 @@ const mutation = new GraphQLObjectType({
         name: { type: new GraphQLNonNull(GraphQLString) },
         description: { type: new GraphQLNonNull(GraphQLString) },
         image: { type: GraphQLString },
-        contributor: {
+        contributors: {
           type: new GraphQLNonNull(GraphQLID)
         }
       },
       resolve(parentValues, args, request) {
-        // return Project.create(args);
-
-        return new Promise((resolve, reject) => {
-          
-          Project.create(args).then((project) => {
-            project.contributors.push(args.contributor);
-            project.save();
-            resolve(project);
-          })
-
-        })
-
-
+        return Project.create(args);
       }
     }
   })

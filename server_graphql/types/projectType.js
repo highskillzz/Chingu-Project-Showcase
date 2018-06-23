@@ -19,6 +19,7 @@ const ProjectType = new GraphQLObjectType({
     contributors: {
       type: new GraphQLList(UserType),
       resolve(parentValues, args, request) {
+        console.log(Project.findContributors(parentValues.id))
         return Project.findContributors(parentValues.id);
       }
     },

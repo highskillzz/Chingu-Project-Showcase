@@ -14,7 +14,7 @@ const User=require("../models/User");
             type:new GraphQLList(ProjectType),
             resolve(parentValues,args,request){
                 // return Project.find().populate("contributors").populate("resources");
-                return Project.find()
+                return Project.find().populate("contributors")
             }
         },
         project:{

@@ -71,7 +71,7 @@ ProjectSchema.statics.like = function likeProject(id) {
 
 ProjectSchema.statics.findContributors = function(id) {
   return this.findById(id)
-    .populate(contributors)
+    .populate("contributors")
     .then(project => {
       return project.contributors;
     });
@@ -79,7 +79,7 @@ ProjectSchema.statics.findContributors = function(id) {
 
 ProjectSchema.statics.findResources = function(id) {
   return this.findById(id)
-    .populate(resources)
+    .populate("resources")
     .then(project => {
       return project.resources;
     });
