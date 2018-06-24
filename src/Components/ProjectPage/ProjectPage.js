@@ -6,18 +6,19 @@ import * as Icons from "../Common/Icons/Icons";
 import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
+import { connect } from "react-redux";
 
-import {
-  keywordsList,
-  BrowserSupportList,
-  details,
-  features,
-  resources,
-  installation,
-  overviews,
-  title,
-  description
-} from "../../models/staticModel";
+// import {
+//   keywordsList,
+//   BrowserSupportList,
+//   details,
+//   features,
+//   resources,
+//   installation,
+//   overviews,
+//   title,
+//   description
+// } from "../../models/staticModel";
 import "./ProjectPage.css";
 
 class ProjectPage extends Component {
@@ -28,6 +29,17 @@ class ProjectPage extends Component {
   }
   render() {
     // Renders the overview of the project
+    // console.log(this.props.projectInfo);
+    const keywordsList=this.props.projectInfo.keywordsList;
+    const BrowserSupportList=this.props.projectInfo.BrowserSupportList;
+    const details=this.props.projectInfo.details;
+    const features=this.props.projectInfo.features;
+    const resources=this.props.projectInfo.resources;
+    const installation=this.props.projectInfo.installation;
+    const overviews=this.props.projectInfo.overviews;
+    const description=this.props.projectInfo.description;
+    const title=this.props.projectInfo.title;
+
     const Overview = overviews.map((detail, index) => (
       <OverviewComponent
         key={index}
@@ -69,28 +81,36 @@ class ProjectPage extends Component {
           </Grid>
 
           <Grid item sm={12} md={6} className="grid">
-              <Grid item sm={12} className="grid">
-                <div className="feature-list">
-                  <h2>Features</h2>
-                  {featureList}
-                </div>
-                <hr />
-              </Grid>
-              <Grid item className="grid">
-                <h2>Browser Support</h2>
-                <BrowserSupport />
-              </Grid>
+            <Grid item sm={12} className="grid">
+              <div className="feature-list">
+                <h2>Features</h2>
+                {featureList}
+              </div>
+              <hr />
+            </Grid>
+            <Grid item className="grid">
+              <h2>Browser Support</h2>
+              <BrowserSupport list={BrowserSupportList}/>
+            </Grid>
           </Grid>
 
           <Grid item md={1} className="grid">
-            <div  />
+            <div />
           </Grid>
 
           <Hidden smDown>
             <Grid item md={5} className="grid">
-            <h2 style={{textAlign:"center",marginRight:"9%",marginBottom:"6%"}}>Overview</h2>
+              <h2
+                style={{
+                  textAlign: "center",
+                  marginRight: "9%",
+                  marginBottom: "6%"
+                }}
+              >
+                Overview
+              </h2>
 
-            <Grid container spacing={16}>
+              <Grid container spacing={16}>
                 {Overview}
               </Grid>
             </Grid>
@@ -99,17 +119,17 @@ class ProjectPage extends Component {
           <Grid item sm={12} className="grid">
             <hr />
             <h2>Installation</h2>
-            <InstallationComponent />
+            <InstallationComponent list={installation}/>
             <hr />
           </Grid>
           <Grid item sm={12} className="grid">
             <h2>Resources</h2>
-            <ResourcesComponent />
+            <ResourcesComponent list={resources}/>
             <hr />
           </Grid>
           <Grid item sm={12} className="grid">
             <h2>Keywords</h2>
-            <KeywordsComponent />
+            <KeywordsComponent list={keywordsList}/>
           </Grid>
         </Grid>
       </div>
@@ -120,14 +140,14 @@ class ProjectPage extends Component {
 //renders the Browser Support
 class BrowserSupport extends Component {
   render() {
-    const TableCellCheckRow = BrowserSupportList.map(
+    const TableCellCheckRow = this.props.list.map(
       (browserSupport, index) => (
         <td key={index}>
           <Checkbox checked={browserSupport.support} />
         </td>
       )
     );
-    const TableHeadRow = BrowserSupportList.map(function(
+    const TableHeadRow = this.props.list.map(function(
       browserSupport,
       index
     ) {
@@ -173,7 +193,7 @@ class InstallationComponent extends Component {
       ) : (
         <span />
       );
-    const installList = installation.map((steps, index) => (
+    const installList = this.props.list.map((steps, index) => (
       <div className="install-step" key={index}>
         <li>{steps.title}</li>
         <Code code={steps.code} />
@@ -186,7 +206,7 @@ class InstallationComponent extends Component {
 //renders the resources for the project
 class ResourcesComponent extends Component {
   render() {
-    const resourcesList = resources.map((resource, index) => (
+    const resourcesList = this.props.list.map((resource, index) => (
       <ul key={index}>
         <li>
           <a href={resource.link}>{resource.title}</a>
@@ -200,7 +220,7 @@ class ResourcesComponent extends Component {
 //renders the keywords for the project
 class KeywordsComponent extends Component {
   render() {
-    const KeywordRow = keywordsList.map((keyword, index) => (
+    const KeywordRow = this.props.list.map((keyword, index) => (
       <Button key={index} variant="outlined" className="keyword-btn">
         {keyword}
       </Button>
@@ -223,4 +243,14 @@ class OverviewComponent extends Component {
   }
 }
 
-export default ProjectPage;
+const mapStateToProps = state => {
+  return {
+    projectInfo: state.project.projectInfo
+  };
+};
+// const mapActionsToProps = dispatch => {
+//   return {
+//     myApplet: bindActionCreators(myAppletActions, dispatch)
+//   };
+// };
+export default connect(mapStateToProps)(ProjectPage);
