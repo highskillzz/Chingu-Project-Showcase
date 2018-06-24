@@ -5,6 +5,7 @@ const Mutation = require("./Mutation");
 
 const { GraphQLSchema } = graphql;
 
+
 module.exports = new GraphQLSchema({
   query: RootQuery,
   mutation: Mutation

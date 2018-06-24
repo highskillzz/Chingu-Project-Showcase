@@ -1,20 +1,39 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt-nodejs");
-const Project=require("./Project");
 
+
+
+
+// Below is for development
 
 const UserSchema = new Schema({
-  name: { type: String, required: true },
-  username: { type: String, required: true },
-  password: { type: String, required: true },
-  email: { type: String, required: true },
-  githubProfile: { type: String, required: true },
+  name: { type: String },
+  username: { type: String },
+  password: { type: String },
+  email: { type: String },
+  githubProfile: { type: String },
   projects:[{
     type: Schema.Types.ObjectId,
-    ref: Project
+    ref: "project"
   }]
 });
+
+
+
+// Below is for production
+
+// const UserSchema = new Schema({
+//   name: { type: String, required: true },
+//   username: { type: String, required: true },
+//   password: { type: String, required: true },
+//   email: { type: String, required: true },
+//   githubProfile: { type: String, required: true },
+//   projects:[{
+//     type: Schema.Types.ObjectId,
+//     ref: "project"
+//   }]
+// });
 
 UserSchema.pre("save", function save(next) {
   const user = this;
@@ -35,7 +54,7 @@ UserSchema.pre("save", function save(next) {
   });
 });
 
-UserSchema.methods.comparePassword = function comparePassword(
+UserSchema.statics.comparePassword = function comparePassword(
   candidatePassword,
   cb
 ) {

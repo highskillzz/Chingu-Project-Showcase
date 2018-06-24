@@ -13,29 +13,33 @@ const User=require("../models/User");
         projects:{
             type:new GraphQLList(ProjectType),
             resolve(parentValues,args,request){
-                return Project.find().populate("contributors");
+                // return Project.find().populate("contributors").populate("resources");
+                return Project.find().populate("contributors")
             }
         },
         project:{
             type:ProjectType,
             args:{id:{type:new GraphQLNonNull(GraphQLID)}},
             resolve(parentValue,args,request){
-                return Project.findById(args.id).populate("contributors")
+                // return Project.findById(args.id).populate("contributors").populate("resources");
+                return Project.findById(args.id)
             }
         },
         users:{
             type:new GraphQLList(UserType),
             resolve(parentValues,args,request){
-                return User.find().populate("projects");
+                // return User.find().populate("projects");
+                return User.find()
             }
         },
         user:{
             type:UserType,
             args:{id:{type:new GraphQLNonNull(GraphQLID)}},
             resolve(parentValue,args,request){
-                return User.findById(args.id).populate("projects")
+                // return User.findById(args.id).populate("projects")
+                return User.findById(args.id)
             }
-        },
+        }
         
     })
 })
