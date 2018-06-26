@@ -8,6 +8,11 @@ import ApolloClient, { createNetworkInterface, addTypename } from 'apollo-client
 import { ApolloProvider } from 'react-apollo'
 import './App.css';
 
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface('http://localhost:4000/graphql'),
+  queryTransformer: addTypename,
+})
+
 class App extends Component {
   render() {
     return (

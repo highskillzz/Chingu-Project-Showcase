@@ -18,18 +18,16 @@ class ProjectPage extends Component {
     this.state = {};
   }
   render() {
-    // Renders the overview of the project
-    // console.log(this.props.projectInfo);
     const project = this.props.data.project;
-    const keywordsList = this.props.projectInfo.keywordsList;
-    const BrowserSupportList = this.props.projectInfo.BrowserSupportList;
-    const details = this.props.projectInfo.details;
-    const features = this.props.projectInfo.features;
-    const resources = this.props.projectInfo.resources;
-    const installation = this.props.projectInfo.installation;
-    const overviews = this.props.projectInfo.overviews;
-    const description = this.props.projectInfo.description;
-    const title = this.props.projectInfo.title;
+    const keywordsList = project.keywordsList;
+    const BrowserSupportList = project.BrowserSupportList;
+    const details = project.details;
+    const features = project.features;
+    const resources = project.resources;
+    const installation = project.installation;
+    const overviews = project.overviews;
+    const description = project.description;
+    const title = project.title;
 
     const Overview = overviews.map((detail, index) => (
       <OverviewComponent
