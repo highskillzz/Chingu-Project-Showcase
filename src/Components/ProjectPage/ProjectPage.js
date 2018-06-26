@@ -6,19 +6,9 @@ import * as Icons from "../Common/Icons/Icons";
 import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
-import { connect } from "react-redux";
+import { connect } from "react-apollo"; // NOTE: different connect!
+import gql from "graphql-tag"; // NOTE: lets us define GraphQL queries in a template language
 
-// import {
-//   keywordsList,
-//   BrowserSupportList,
-//   details,
-//   features,
-//   resources,
-//   installation,
-//   overviews,
-//   title,
-//   description
-// } from "../../models/staticModel";
 import "./ProjectPage.css";
 
 class ProjectPage extends Component {
@@ -30,15 +20,16 @@ class ProjectPage extends Component {
   render() {
     // Renders the overview of the project
     // console.log(this.props.projectInfo);
-    const keywordsList=this.props.projectInfo.keywordsList;
-    const BrowserSupportList=this.props.projectInfo.BrowserSupportList;
-    const details=this.props.projectInfo.details;
-    const features=this.props.projectInfo.features;
-    const resources=this.props.projectInfo.resources;
-    const installation=this.props.projectInfo.installation;
-    const overviews=this.props.projectInfo.overviews;
-    const description=this.props.projectInfo.description;
-    const title=this.props.projectInfo.title;
+    const project = this.props.data.project;
+    const keywordsList = this.props.projectInfo.keywordsList;
+    const BrowserSupportList = this.props.projectInfo.BrowserSupportList;
+    const details = this.props.projectInfo.details;
+    const features = this.props.projectInfo.features;
+    const resources = this.props.projectInfo.resources;
+    const installation = this.props.projectInfo.installation;
+    const overviews = this.props.projectInfo.overviews;
+    const description = this.props.projectInfo.description;
+    const title = this.props.projectInfo.title;
 
     const Overview = overviews.map((detail, index) => (
       <OverviewComponent
@@ -90,7 +81,7 @@ class ProjectPage extends Component {
             </Grid>
             <Grid item className="grid">
               <h2>Browser Support</h2>
-              <BrowserSupport list={BrowserSupportList}/>
+              <BrowserSupport list={BrowserSupportList} />
             </Grid>
           </Grid>
 
@@ -119,17 +110,17 @@ class ProjectPage extends Component {
           <Grid item sm={12} className="grid">
             <hr />
             <h2>Installation</h2>
-            <InstallationComponent list={installation}/>
+            <InstallationComponent list={installation} />
             <hr />
           </Grid>
           <Grid item sm={12} className="grid">
             <h2>Resources</h2>
-            <ResourcesComponent list={resources}/>
+            <ResourcesComponent list={resources} />
             <hr />
           </Grid>
           <Grid item sm={12} className="grid">
             <h2>Keywords</h2>
-            <KeywordsComponent list={keywordsList}/>
+            <KeywordsComponent list={keywordsList} />
           </Grid>
         </Grid>
       </div>
@@ -140,17 +131,12 @@ class ProjectPage extends Component {
 //renders the Browser Support
 class BrowserSupport extends Component {
   render() {
-    const TableCellCheckRow = this.props.list.map(
-      (browserSupport, index) => (
-        <td key={index}>
-          <Checkbox checked={browserSupport.support} />
-        </td>
-      )
-    );
-    const TableHeadRow = this.props.list.map(function(
-      browserSupport,
-      index
-    ) {
+    const TableCellCheckRow = this.props.list.map((browserSupport, index) => (
+      <td key={index}>
+        <Checkbox checked={browserSupport.support} />
+      </td>
+    ));
+    const TableHeadRow = this.props.list.map(function(browserSupport, index) {
       const browserName = browserSupport.browserName;
       const IconName = Icons[browserName];
       return (
@@ -248,9 +234,37 @@ const mapStateToProps = state => {
     projectInfo: state.project.projectInfo
   };
 };
+
+const mapQueriesToProps = ({ ownProps, state }) => {
+  return {
+    data: {
+      query: gql`
+        query {
+          project(id: "41224d776a326fb40f000001") {
+            id
+            name
+            description
+            image
+            contributors {
+              name
+            }
+            resources {
+              title
+              url
+            }
+          }
+        }
+      `
+    }
+  };
+};
+
+export default connect({
+  mapQueriesToProps
+})(ProjectPage);
 // const mapActionsToProps = dispatch => {
 //   return {
 //     myApplet: bindActionCreators(myAppletActions, dispatch)
 //   };
 // };
-export default connect(mapStateToProps)(ProjectPage);
+// export default connect(mapStateToProps)(ProjectPage);
