@@ -4,26 +4,17 @@ import Header from "../Header/Header";
 import Homepage from "../Homepage/Homepage";
 import Footer from "../Footer/Footer";
 import ProjectPage from "../ProjectPage/ProjectPage";
-import ApolloClient, { createNetworkInterface, addTypename } from 'apollo-client'
-import { ApolloProvider } from 'react-apollo'
 import './App.css';
-
-const client = new ApolloClient({
-  networkInterface: createNetworkInterface('http://localhost:4000/graphql'),
-  queryTransformer: addTypename,
-})
 
 class App extends Component {
   render() {
-    return (
-      <ApolloProvider client={client}>  
+    return (      
       <div className="App">
         <Header />
         <Route exact path="/" component={Homepage} />
         <Route path="/projectpage" component={ProjectPage} />
         <Footer />
       </div>
-      </ApolloProvider>
     );
   }
 }

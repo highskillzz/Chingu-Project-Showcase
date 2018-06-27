@@ -2,18 +2,25 @@
 import * as ACTIONS from "../actions/actionTypes";
 
 const projectReducer = (state = {}, action) => {
-	const payload=action.payload;
+	const user=action.payload;
 	switch (action.type) {
 		case ACTIONS.ADD_USER:
 			//for listing out all projects
 			return {
 				...state,
-				payload
+				name:user.name,
+				username:user.username,
+				githubProfile:user.githubProfile,
+				email:user.email
 			};
 		case ACTIONS.GET_USER:
 			return{
 				...state,
-				payload
+				name:user.name,
+				username:user.username,
+				githubProfile:user.githubProfile,
+				email:user.email,
+				projects:user.projects
 			}
 		default:
 			return state;

@@ -6,9 +6,9 @@ import * as Icons from "../Common/Icons/Icons";
 import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
-import { connect } from "react-apollo"; // NOTE: different connect!
-import gql from "graphql-tag"; // NOTE: lets us define GraphQL queries in a template language
-
+import { connect } from 'react-redux';
+import * as projectActions from "../../actions/showProject";
+import { bindActionCreators } from "redux";
 import "./ProjectPage.css";
 
 class ProjectPage extends Component {
@@ -17,8 +17,12 @@ class ProjectPage extends Component {
 
     this.state = {};
   }
+  componentWillMount() {
+    this.props.getProjectList.getProjects();
+  }
   render() {
-    const project = this.props.data.project;
+    const project = this.props.data.projects;
+    console.log(project);
     const keywordsList = project.keywordsList;
     const BrowserSupportList = project.BrowserSupportList;
     const details = project.details;
@@ -227,42 +231,40 @@ class OverviewComponent extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    projectInfo: state.project.projectInfo
-  };
-};
-
-const mapQueriesToProps = ({ ownProps, state }) => {
-  return {
-    data: {
-      query: gql`
-        query {
-          project(id: "41224d776a326fb40f000001") {
-            id
-            name
-            description
-            image
-            contributors {
-              name
-            }
-            resources {
-              title
-              url
-            }
-          }
-        }
-      `
-    }
-  };
-};
-
-export default connect({
-  mapQueriesToProps
-})(ProjectPage);
-// const mapActionsToProps = dispatch => {
+// const mapQueriesToProps = ({ ownProps, state }) => {
 //   return {
-//     myApplet: bindActionCreators(myAppletActions, dispatch)
+//     data: {
+//       query: gql`
+//         query {
+//           project(id: "41224d776a326fb40f000001") {
+//             id
+//             name
+//             description
+//             image
+//             contributors {
+//               name
+//             }
+//             resources {
+//               title
+//               url
+//             }
+//           }
+//         }
+//       `
+//     }
 //   };
 // };
-// export default connect(mapStateToProps)(ProjectPage);
+
+const mapActionsToProps = dispatch => {
+  return {
+    getProjectList: bindActionCreators(projectActions, dispatch)
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    projectList: state.projects.projectList
+  };
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(ProjectPage);
