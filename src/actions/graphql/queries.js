@@ -1,7 +1,7 @@
 import { gql } from "graphql-tag";
 
 const projectsQuery=gql`
-  query {
+  {
   projects {
     id
     name
@@ -16,5 +16,5 @@ const projectsQuery=gql`
     }
   }
 }
-
+`;
 export {projectsQuery};
