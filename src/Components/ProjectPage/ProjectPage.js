@@ -14,12 +14,11 @@ import "./ProjectPage.css";
 class ProjectPage extends Component {
   constructor(props) {
     super(props);
-
     this.state = {};
   }
-  componentWillMount() {
-    this.props.getProjectList.getProjects();
-  }
+  // componentWillMount() {
+  //   this.props.getProjectList.getProjects();
+  // }
   render() {
     const project = this.props.data.projects;
     console.log(project);
@@ -231,40 +230,18 @@ class OverviewComponent extends Component {
   }
 }
 
-// const mapQueriesToProps = ({ ownProps, state }) => {
+// const mapActionsToProps = dispatch => {
 //   return {
-//     data: {
-//       query: gql`
-//         query {
-//           project(id: "41224d776a326fb40f000001") {
-//             id
-//             name
-//             description
-//             image
-//             contributors {
-//               name
-//             }
-//             resources {
-//               title
-//               url
-//             }
-//           }
-//         }
-//       `
-//     }
+//     getProjectList: bindActionCreators(projectActions, dispatch)
 //   };
 // };
 
-const mapActionsToProps = dispatch => {
-  return {
-    getProjectList: bindActionCreators(projectActions, dispatch)
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     projectList: state.projects.projectList
+//   };
+// };
 
-const mapStateToProps = state => {
-  return {
-    projectList: state.projects.projectList
-  };
-};
+// export default connect(mapStateToProps, mapActionsToProps)(ProjectPage);
 
-export default connect(mapStateToProps, mapActionsToProps)(ProjectPage);
+export default ProjectPage;

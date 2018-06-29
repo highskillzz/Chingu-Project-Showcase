@@ -1,5 +1,4 @@
-import { gql } from "graphql-tag";
-
+import gql from "graphql-tag";
 const projectsQuery=gql`
   {
   projects {
@@ -17,4 +16,5 @@ const projectsQuery=gql`
   }
 }
 `;
+console.log(projectsQuery);
 export {projectsQuery};
