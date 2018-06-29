@@ -4,7 +4,7 @@ import initialState from "./initialState";
 import projectReducer from '../reducers/projectReducer';
 
 const rootReducer = combineReducers({
-  project:projectReducer
+  projects:projectReducer
 });
 
 const middlewares = applyMiddleware(thunk);

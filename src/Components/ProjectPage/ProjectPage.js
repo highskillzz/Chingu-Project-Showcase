@@ -6,7 +6,7 @@ import * as Icons from "../Common/Icons/Icons";
 import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import * as projectActions from "../../actions/showProject";
 import { bindActionCreators } from "redux";
 import "./ProjectPage.css";
@@ -16,24 +16,91 @@ class ProjectPage extends Component {
     super(props);
     this.state = {};
   }
-  componentWillMount() {
+  componentDidMount() {
+    console.log("Mounting");
     this.props.getProjectList.getProjects();
+    console.log("Mounting done");
   }
   render() {
-    const project = this.props.data;
+    const projects = this.props.projectList;
+    let project=[];
     console.log("Here");
     console.log(project);
     // const keywordsList = project.keywordsList;
-    const keywordsList=["XML","HTML"];
-    const BrowserSupportList = project.BrowserSupportList;
-    const details = project.details;
-    const features = project.features;
-    const resources = project.resources;
-    const installation = project.installation;
-    const overviews = project.overviews;
-    const description = project.description;
-    const title = project.title;
+    let keywordsList = ["XML", "HTML"];
+    let BrowserSupportList = [
+      {
+        browserName: "Chrome",
+        support: "true"
+      },
+      {
+        browserName: "Firefox",
+        support: "true"
+      },
+      {
+        browserName: "InternetExplorer",
+        support: "true"
+      },
+      {
+        browserName: "Opera",
+        support: "true"
+      },
+      {
+        browserName: "Edge",
+        support: "true"
+      }
+    ];
+    // const BrowserSupportList = project.BrowserSupportList;
+    let details = [
+  {
+    name: "npm",
+    content: "v18.0.0"
+  },
+  {
+    name: "build",
+    content: "failing"
+  },
+  {
+    name: "chat",
+    content: "gitter"
+  },
+  {
+    name: "contributors",
+    content: "4"
+  }
+];
+let features = [
+  {
+    descripton: "Find Partners for project"
+  },
+  {
+    descripton: "Able to open source the project"
+  },
+  {
+    descripton: "Supports pair programming"
+  },
+  {
+    descripton: "Tracks specific user according to their skills"
+  },
+  {
+    descripton: "Able to launch call for help in sorting issue"
+  }
+];
 
+    // const details = project.details;
+    // const features = project.features;
+    let resources=[],installation=[],overviews=[],description,title;
+    if(projects!==undefined){
+      project=projects[0];
+      console.log("Project is defined");
+      console.log(project);
+    // resources = project.resources;
+    // installation = project.installation;
+    // overviews = project.overviews;
+    description = project.description;
+    title = project.name;
+    console.log(title);
+  }
     const Overview = overviews.map((detail, index) => (
       <OverviewComponent
         key={index}
@@ -232,15 +299,15 @@ class OverviewComponent extends Component {
   }
 }
 
-const mapActionsToProps = dispatch => {
-  return {
-    getProjectList: bindActionCreators(projectActions, dispatch)
-  };
-};
-
 const mapStateToProps = state => {
   return {
     projectList: state.projects.projectList
+  };
+};
+
+const mapActionsToProps = dispatch => {
+  return {
+    getProjectList: bindActionCreators(projectActions, dispatch)
   };
 };
 
