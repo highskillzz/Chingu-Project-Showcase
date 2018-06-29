@@ -16,13 +16,15 @@ class ProjectPage extends Component {
     super(props);
     this.state = {};
   }
-  // componentWillMount() {
-  //   this.props.getProjectList.getProjects();
-  // }
+  componentWillMount() {
+    this.props.getProjectList.getProjects();
+  }
   render() {
-    const project = this.props.data.projects;
+    const project = this.props.data;
+    console.log("Here");
     console.log(project);
-    const keywordsList = project.keywordsList;
+    // const keywordsList = project.keywordsList;
+    const keywordsList=["XML","HTML"];
     const BrowserSupportList = project.BrowserSupportList;
     const details = project.details;
     const features = project.features;
@@ -230,18 +232,16 @@ class OverviewComponent extends Component {
   }
 }
 
-// const mapActionsToProps = dispatch => {
-//   return {
-//     getProjectList: bindActionCreators(projectActions, dispatch)
-//   };
-// };
+const mapActionsToProps = dispatch => {
+  return {
+    getProjectList: bindActionCreators(projectActions, dispatch)
+  };
+};
 
-// const mapStateToProps = state => {
-//   return {
-//     projectList: state.projects.projectList
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    projectList: state.projects.projectList
+  };
+};
 
-// export default connect(mapStateToProps, mapActionsToProps)(ProjectPage);
-
-export default ProjectPage;
+export default connect(mapStateToProps, mapActionsToProps)(ProjectPage);
