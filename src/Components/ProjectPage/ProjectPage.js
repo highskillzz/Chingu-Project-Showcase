@@ -94,7 +94,7 @@ let features = [
       project=projects[0];
       console.log("Project is defined");
       console.log(project);
-    // resources = project.resources;
+      resources = project.resources;
     // installation = project.installation;
     // overviews = project.overviews;
     description = project.description;
