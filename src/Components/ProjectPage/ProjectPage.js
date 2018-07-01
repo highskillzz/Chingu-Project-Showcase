@@ -79,8 +79,6 @@ class ProjectPage extends Component {
         }
       ];
       features = project.features;
-      // features=["Find partners for projects", "Do something about it"]
-      // overviews = project.overviews;
       let contributorsArray=[];
       for(var i=0;i<project.contributors.length;i++){
       	contributorsArray.push(project.contributors[i].username);
