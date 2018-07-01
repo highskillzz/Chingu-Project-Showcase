@@ -15,7 +15,7 @@ function MainContent(props) {
         const allProjects=props.allProjects;
         const projectList=allProjects.map((project,index)=>
           <Grid item xs={12} sm={4} key={index}>
-              <Card title={project.title} contributors={project.contributors} description={project.description} image={project.image}/>
+              <Card title={project.name} contributors={project.contributors} description={project.description} image={project.image}/>
           </Grid>
         );
         return (
