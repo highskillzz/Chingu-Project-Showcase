@@ -6,28 +6,101 @@ import * as Icons from "../Common/Icons/Icons";
 import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
-
-import {
-  keywordsList,
-  BrowserSupportList,
-  details,
-  features,
-  resources,
-  installation,
-  overviews,
-  title,
-  description
-} from "../../models/staticModel";
+import { connect } from "react-redux";
+import * as projectActions from "../../actions/showProject";
+import { bindActionCreators } from "redux";
 import "./ProjectPage.css";
 
 class ProjectPage extends Component {
   constructor(props) {
     super(props);
-
     this.state = {};
   }
+  componentDidMount() {
+    console.log("Mounting");
+    this.props.getProjectList.getProjects();
+    console.log("Mounting done");
+  }
   render() {
-    // Renders the overview of the project
+    const projects = this.props.projectList;
+    let project=[];
+    console.log("Here");
+    console.log(project);
+    // const keywordsList = project.keywordsList;
+    let keywordsList = ["XML", "HTML"];
+    let BrowserSupportList = [
+      {
+        browserName: "Chrome",
+        support: "true"
+      },
+      {
+        browserName: "Firefox",
+        support: "true"
+      },
+      {
+        browserName: "InternetExplorer",
+        support: "true"
+      },
+      {
+        browserName: "Opera",
+        support: "true"
+      },
+      {
+        browserName: "Edge",
+        support: "true"
+      }
+    ];
+    // const BrowserSupportList = project.BrowserSupportList;
+    let details = [
+  {
+    name: "npm",
+    content: "v18.0.0"
+  },
+  {
+    name: "build",
+    content: "failing"
+  },
+  {
+    name: "chat",
+    content: "gitter"
+  },
+  {
+    name: "contributors",
+    content: "4"
+  }
+];
+let features = [
+  {
+    descripton: "Find Partners for project"
+  },
+  {
+    descripton: "Able to open source the project"
+  },
+  {
+    descripton: "Supports pair programming"
+  },
+  {
+    descripton: "Tracks specific user according to their skills"
+  },
+  {
+    descripton: "Able to launch call for help in sorting issue"
+  }
+];
+
+    // const details = project.details;
+    // const features = project.features;
+    let resources=[],installation=[],overviews=[],description,title;
+    if(projects!==undefined){
+      project=projects[0];
+      console.log("Project is defined");
+      console.log(project);
+      resources = project.resources;
+    // installation = project.installation;
+    // overviews = project.overviews;
+    description = project.description;
+    title = project.name;
+    console.log(title);
+  }
     const Overview = overviews.map((detail, index) => (
       <OverviewComponent
         key={index}
@@ -69,28 +142,36 @@ class ProjectPage extends Component {
           </Grid>
 
           <Grid item sm={12} md={6} className="grid">
-              <Grid item sm={12} className="grid">
-                <div className="feature-list">
-                  <h2>Features</h2>
-                  {featureList}
-                </div>
-                <hr />
-              </Grid>
-              <Grid item className="grid">
-                <h2>Browser Support</h2>
-                <BrowserSupport />
-              </Grid>
+            <Grid item sm={12} className="grid">
+              <div className="feature-list">
+                <h2>Features</h2>
+                {featureList}
+              </div>
+              <hr />
+            </Grid>
+            <Grid item className="grid">
+              <h2>Browser Support</h2>
+              <BrowserSupport list={BrowserSupportList} />
+            </Grid>
           </Grid>
 
           <Grid item md={1} className="grid">
-            <div  />
+            <div />
           </Grid>
 
           <Hidden smDown>
             <Grid item md={5} className="grid">
-            <h2 style={{textAlign:"center",marginRight:"9%",marginBottom:"6%"}}>Overview</h2>
+              <h2
+                style={{
+                  textAlign: "center",
+                  marginRight: "9%",
+                  marginBottom: "6%"
+                }}
+              >
+                Overview
+              </h2>
 
-            <Grid container spacing={16}>
+              <Grid container spacing={16}>
                 {Overview}
               </Grid>
             </Grid>
@@ -99,17 +180,17 @@ class ProjectPage extends Component {
           <Grid item sm={12} className="grid">
             <hr />
             <h2>Installation</h2>
-            <InstallationComponent />
+            <InstallationComponent list={installation} />
             <hr />
           </Grid>
           <Grid item sm={12} className="grid">
             <h2>Resources</h2>
-            <ResourcesComponent />
+            <ResourcesComponent list={resources} />
             <hr />
           </Grid>
           <Grid item sm={12} className="grid">
             <h2>Keywords</h2>
-            <KeywordsComponent />
+            <KeywordsComponent list={keywordsList} />
           </Grid>
         </Grid>
       </div>
@@ -120,17 +201,12 @@ class ProjectPage extends Component {
 //renders the Browser Support
 class BrowserSupport extends Component {
   render() {
-    const TableCellCheckRow = BrowserSupportList.map(
-      (browserSupport, index) => (
-        <td key={index}>
-          <Checkbox checked={browserSupport.support} />
-        </td>
-      )
-    );
-    const TableHeadRow = BrowserSupportList.map(function(
-      browserSupport,
-      index
-    ) {
+    const TableCellCheckRow = this.props.list.map((browserSupport, index) => (
+      <td key={index}>
+        <Checkbox checked={browserSupport.support} />
+      </td>
+    ));
+    const TableHeadRow = this.props.list.map(function(browserSupport, index) {
       const browserName = browserSupport.browserName;
       const IconName = Icons[browserName];
       return (
@@ -173,7 +249,7 @@ class InstallationComponent extends Component {
       ) : (
         <span />
       );
-    const installList = installation.map((steps, index) => (
+    const installList = this.props.list.map((steps, index) => (
       <div className="install-step" key={index}>
         <li>{steps.title}</li>
         <Code code={steps.code} />
@@ -186,7 +262,7 @@ class InstallationComponent extends Component {
 //renders the resources for the project
 class ResourcesComponent extends Component {
   render() {
-    const resourcesList = resources.map((resource, index) => (
+    const resourcesList = this.props.list.map((resource, index) => (
       <ul key={index}>
         <li>
           <a href={resource.link}>{resource.title}</a>
@@ -200,7 +276,7 @@ class ResourcesComponent extends Component {
 //renders the keywords for the project
 class KeywordsComponent extends Component {
   render() {
-    const KeywordRow = keywordsList.map((keyword, index) => (
+    const KeywordRow = this.props.list.map((keyword, index) => (
       <Button key={index} variant="outlined" className="keyword-btn">
         {keyword}
       </Button>
@@ -223,4 +299,16 @@ class OverviewComponent extends Component {
   }
 }
 
-export default ProjectPage;
+const mapStateToProps = state => {
+  return {
+    projectList: state.projects.projectList
+  };
+};
+
+const mapActionsToProps = dispatch => {
+  return {
+    getProjectList: bindActionCreators(projectActions, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(ProjectPage);

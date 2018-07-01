@@ -2,9 +2,10 @@ const express=require("express");
 const expressGraphQL=require("express-graphql");
 const schema=require("./schema/schema");
 const mongoose = require('mongoose');
-
-
+const cors = require('./config/cors');
 const app = express();
+// enabling CORS for development
+app.use(cors.corsWithOptions);
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/chingu_showcase");
