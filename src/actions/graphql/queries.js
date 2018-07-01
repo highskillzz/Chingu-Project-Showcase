@@ -8,6 +8,7 @@ const projectsQuery=gql`
     image
     contributors {
       name
+      username
     }
     resources {
       title

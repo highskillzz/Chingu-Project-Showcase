@@ -57,7 +57,6 @@ class ProjectPage extends Component {
       description = null,
       title = null,
       keywordsList = [];
-    
       keywordsList = project.keywords;
       // details = project.details;
       details = [
@@ -67,7 +66,7 @@ class ProjectPage extends Component {
         },
         {
           name: "build",
-          content: "failing"
+          content: project.build
         },
         {
           name: "chat",
@@ -75,16 +74,22 @@ class ProjectPage extends Component {
         },
         {
           name: "contributors",
-          content: "4"
+          // content: project.contributors.length
+          content:"4"
         }
       ];
       features = project.features;
       // features=["Find partners for projects", "Do something about it"]
       // overviews = project.overviews;
+      let contributorsArray=[];
+      for(var i=0;i<project.contributors.length;i++){
+      	contributorsArray.push(project.contributors[i].username);
+      }
+      console.log(contributorsArray);
       overviews = [
         {
           name: "Version",
-          content: "v18.0.0"
+          content: project.version
         },
         {
           name: "License",
@@ -96,11 +101,12 @@ class ProjectPage extends Component {
         },
         {
           name: "Repository",
-          content: "Openbud"
+          content: "Github"
         },
         {
           name: "Collabrators",
-          content: "Vikranth, Anshul"
+          // content: project.contributors
+          content:contributorsArray
         }
       ];
       resources = project.resources;
