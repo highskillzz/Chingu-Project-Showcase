@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 const projectsQuery=gql`
   {
-  projects {
+  project(id:"5b38a4eef73d09675654889f") {
     id
     name
     description
@@ -13,6 +13,11 @@ const projectsQuery=gql`
       title
       url
     }
+    build
+    version
+    features
+    keywords
+    browserSupport
   }
 }
 `;

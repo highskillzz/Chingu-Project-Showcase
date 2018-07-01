@@ -16,14 +16,18 @@ class ProjectPage extends Component {
     super(props);
     this.state = {};
   }
-  // componentDidMount() {
-  //   // console.log("Mounting");
-  //   this.props.getProjectList.getProjects();
-  // }
+  componentDidMount() {
+    console.log("Mounting");
+    this.props.getProjectList.getProject();
+  }
   render() {
-    const project = this.props.projectInfo;
-    const keywordsList = project.keywords;
-    const BrowserSupportList = [
+    let project = this.props.projectInfo;
+    console.log(project);
+    if(project.length===0){
+      console.log("undefined here");
+      return(<h1>Loading</h1>)
+    }
+    let BrowserSupportList = [
       {
         browserName: "Chrome",
         support: "true"
@@ -45,14 +49,79 @@ class ProjectPage extends Component {
         support: "true"
       }
     ];
-    const details = project.details;
-    const features = project.features;
-    let overviews = project.overviews;
-    let resources = project.resources;
-    let installation = project.installation;
-    let description = project.description;
-    let title = project.name;
-
+    let details = [],
+      features = null,
+      overviews = [],
+      resources = [],
+      installation = [],
+      description = null,
+      title = null,
+      keywordsList = [];
+    
+      keywordsList = project.keywords;
+      // details = project.details;
+      details = [
+        {
+          name: "npm",
+          content: "v18.0.0"
+        },
+        {
+          name: "build",
+          content: "failing"
+        },
+        {
+          name: "chat",
+          content: "gitter"
+        },
+        {
+          name: "contributors",
+          content: "4"
+        }
+      ];
+      features = project.features;
+      // features=["Find partners for projects", "Do something about it"]
+      // overviews = project.overviews;
+      overviews = [
+        {
+          name: "Version",
+          content: "v18.0.0"
+        },
+        {
+          name: "License",
+          content: "MIT"
+        },
+        {
+          name: "Open Issues",
+          content: "4"
+        },
+        {
+          name: "Repository",
+          content: "Openbud"
+        },
+        {
+          name: "Collabrators",
+          content: "Vikranth, Anshul"
+        }
+      ];
+      resources = project.resources;
+      // installation = project.installation;
+      installation=[
+        {
+          title: "Using npm",
+          code: "npm start"
+        },
+        {
+          title: "Using yarn",
+          code: "yarn run"
+        },
+        {
+          title: "On deployed version",
+          code: "https://www.projectongithub.io"
+        }
+      ]
+      description = project.description;
+      title = project.name;
+    
     const Overview = overviews.map((detail, index) => (
       <OverviewComponent
         key={index}
@@ -214,7 +283,7 @@ class InstallationComponent extends Component {
 //renders the resources for the project
 class ResourcesComponent extends Component {
   render() {
-    const resourcesList = this.props.list.map((resource, index) => (
+    const resourcesList =this.props.list.map((resource, index) => (
       <ul key={index}>
         <li>
           <a href={resource.url}>{resource.title}</a>
@@ -253,14 +322,14 @@ class OverviewComponent extends Component {
 
 const mapStateToProps = state => {
   return {
-    projectInfo: state.project.projectInfo
+    projectInfo: state.projects.projectInfo
   };
 };
 
-// const mapActionsToProps = dispatch => {
-//   return {
-//     getProjectList: bindActionCreators(projectActions, dispatch)
-//   };
-// };
+const mapActionsToProps = dispatch => {
+  return {
+    getProjectList: bindActionCreators(projectActions, dispatch)
+  };
+};
 
-export default connect(mapStateToProps)(ProjectPage);
+export default connect(mapStateToProps, mapActionsToProps)(ProjectPage);

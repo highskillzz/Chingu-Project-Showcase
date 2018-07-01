@@ -2,9 +2,10 @@ import * as ACTIONS from "./actionTypes";
 import client from "../client";
 import { projectsQuery } from "./graphql/queries";
 
-export function getProjects() {return async dispatch => {
+export function getProject() {return async dispatch => {
 
-	dispatch({ type: ACTIONS.SHOW_PROJECT });
+	// dispatch({ type: ACTIONS.SHOW_PROJECT });
+	console.log("Invoking actions");
 	await Promise.resolve(
 		client.query({
 			query: projectsQuery
@@ -15,7 +16,7 @@ export function getProjects() {return async dispatch => {
 			console.log(resp.data);
 			dispatch({
 				type: ACTIONS.SHOW_PROJECT_FULFILLED,
-				payload: resp.data.projects
+				payload: resp.data.project
 			});
 		}
 	});
