@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 const projectsQuery=gql`
   {
-  project(id:"5b38a4eef73d09675654889f") {
+  project(id:"5b38d1e1f73d096756549550") {
     id
     name
     description
