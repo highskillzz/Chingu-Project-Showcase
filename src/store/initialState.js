@@ -116,7 +116,7 @@ const initialState = {
 		}
 	},
 	projects: {
-		projectInfo: []
+		
 	}
 };
 export default initialState;

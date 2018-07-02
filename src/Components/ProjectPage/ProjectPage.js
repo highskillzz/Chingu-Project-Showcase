@@ -26,7 +26,7 @@ class ProjectPage extends Component {
 	render() {
 		let project = this.props.projectInfo;
 		console.log(project);
-		if (project.length === 0) {
+		if (project===undefined) {
 			console.log("undefined here");
 			return <h1>Loading</h1>;
 		}
@@ -61,7 +61,10 @@ class ProjectPage extends Component {
 			title = null,
 			keywordsList = [];
 		keywordsList = project.keywords;
-		// details = project.details;
+		let contributorsArray = [];
+		for (var i = 0; i < project.contributors.length; i++) {
+			contributorsArray.push(project.contributors[i].username);
+		}
 		details = [
 			{
 				name: "npm",
@@ -77,16 +80,11 @@ class ProjectPage extends Component {
 			},
 			{
 				name: "contributors",
-				// content: project.contributors.length
-				content: "4"
+				content: contributorsArray.length
+				// content: "4"
 			}
 		];
 		features = project.features;
-		let contributorsArray = [];
-		for (var i = 0; i < project.contributors.length; i++) {
-			contributorsArray.push(project.contributors[i].username);
-		}
-		console.log(contributorsArray);
 		overviews = [
 			{
 				name: "Version",
@@ -106,7 +104,6 @@ class ProjectPage extends Component {
 			},
 			{
 				name: "Collabrators",
-				// content: project.contributors
 				content: contributorsArray
 			}
 		];
@@ -127,8 +124,8 @@ class ProjectPage extends Component {
         ]
 		// let install="Paragraphs are separated by a blank line. 2nd paragraph. *Italic*, **bold**, and `monospace`. Itemized lists look like:* this one* that one* the other one Note that --- not considering the asterisk --- the actual text content starts at 4-columns in.";
 		// var showdown  = require('showdown'),
-  //   	converter = new showdown.Converter();
-  //   	installation = converter.makeHtml(install);
+  		// converter = new showdown.Converter();
+  		// installation = converter.makeHtml(install);
 		description = project.description;
 		title = project.name;
 		const Overview = overviews.map((detail, index) => (
@@ -214,7 +211,7 @@ class ProjectPage extends Component {
 					<Grid item sm={12} className="grid">
 						<hr />
 						<h2>Installation</h2>
-						{installation}
+						<InstallationComponent list={installation} />
 						<hr />
 					</Grid>
 					<Grid item sm={12} className="grid">

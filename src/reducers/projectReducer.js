@@ -21,9 +21,10 @@ const projectReducer = (state = {}, action) => {
 			};
 		case ACTIONS.SHOW_PROJECT:
 			return {
-				...state
+				state
 			};
 		case ACTIONS.SHOW_PROJECT_FULFILLED:
+		console.log("Project fulfilled");
 			return {
 				...state,
 				projectInfo:payload
