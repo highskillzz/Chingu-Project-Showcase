@@ -23,4 +23,29 @@ const projectsQuery=gql`
 }
 `;
 console.log(projectsQuery);
-export {projectsQuery};
+
+const allProjectsQuery=gql`
+  {
+  projects{
+    id
+    name
+    description
+    image
+    contributors {
+      name
+      username
+    }
+    resources {
+      title
+      url
+    }
+    build
+    version
+    features
+    keywords
+    browserSupport
+  }
+}
+`;
+
+export {projectsQuery,allProjectsQuery};

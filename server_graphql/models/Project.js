@@ -27,6 +27,12 @@ const ProjectSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "user"
     }
+  ],
+  installation:[
+    {
+      title:{type:String},
+      code:{type:String}
+    }
   ]
 });
 

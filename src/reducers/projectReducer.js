@@ -10,8 +10,18 @@ const projectReducer = (state = {}, action) => {
 			//for listing out all projects
 			return {
 				...state,
-				loading: true,
 				projectList:payload
+			};
+		case ACTIONS.LIST_PROJECT_FULFILLED:
+		console.log("Project fulfilled");
+			//for listing out all projects
+			return {
+				...state,
+				projectList:payload
+			};
+		case ACTIONS.SHOW_PROJECT:
+			return {
+				...state
 			};
 		case ACTIONS.SHOW_PROJECT_FULFILLED:
 			return {
