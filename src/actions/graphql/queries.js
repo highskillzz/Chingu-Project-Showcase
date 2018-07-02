@@ -1,51 +1,52 @@
 import gql from "graphql-tag";
-const projectsQuery=gql`
-  {
-  project(id:"5b38d1e1f73d096756549550") {
-    id
-    name
-    description
-    image
-    contributors {
+const getProjectQuery = gql`
+  query($id: ID!) {
+    project(id: $id) {
+      id
       name
-      username
+      description
+      image
+      contributors {
+        name
+        username
+      }
+      resources {
+        title
+        url
+      }
+      build
+      version
+      features
+      keywords
+      browserSupport
     }
-    resources {
-      title
-      url
-    }
-    build
-    version
-    features
-    keywords
-    browserSupport
   }
-}
 `;
-console.log(projectsQuery);
+console.log("Query is");
+console.log(getProjectQuery);
 
-const allProjectsQuery=gql`
+const allProjectsQuery = gql`
   {
-  projects{
-    id
-    name
-    description
-    image
-    contributors {
+    projects {
+      id
       name
-      username
+      description
+      image
+      contributors {
+        name
+        username
+      }
+      resources {
+        title
+        url
+      }
+      build
+      version
+      features
+      keywords
+      browserSupport
     }
-    resources {
-      title
-      url
-    }
-    build
-    version
-    features
-    keywords
-    browserSupport
   }
-}
 `;
 
-export {projectsQuery,allProjectsQuery};
+export { getProjectQuery, allProjectsQuery };

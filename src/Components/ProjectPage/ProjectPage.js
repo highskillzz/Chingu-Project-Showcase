@@ -21,7 +21,7 @@ class ProjectPage extends Component {
 	}
 	componentDidMount() {
 		console.log("Mounting");
-		this.props.getProjectList.getProject();
+		this.props.getProjectList.getProject(this.props.location.param);
 	}
 	render() {
 		let project = this.props.projectInfo;

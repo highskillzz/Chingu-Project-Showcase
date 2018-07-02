@@ -1,6 +1,6 @@
 import * as ACTIONS from "./actionTypes";
 import client from "../client";
-import { projectsQuery,allProjectsQuery } from "./graphql/queries";
+import { getProjectQuery,allProjectsQuery } from "./graphql/queries";
 
 export function getAllProjects(){
 	return async dispatch=>{
@@ -22,13 +22,14 @@ export function getAllProjects(){
 	};
 }
 
-export function getProject() {return async dispatch => {
+export function getProject(id) {return async dispatch => {
 
 	// dispatch({ type: ACTIONS.SHOW_PROJECT });
-	console.log("Invoking actions");
+	console.log("Invoking actions "+id);
 	await Promise.resolve(
 		client.query({
-			query: projectsQuery
+			query: getProjectQuery,
+			variables:{"id":id}
 		})
 	).then(resp => {
 		if (resp.data) {
