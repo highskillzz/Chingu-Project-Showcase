@@ -18,8 +18,9 @@ const styles = {
   }
 };
 
-function handleClick(){
-  console.log("Clicked");
+function handleClick(id){
+  console.log("Clicked "+id);
+  // <Link to="projectpage" params={{userId: id}}>Mateusz</Link>
 }
 
 function CustomCard(props) {
@@ -46,7 +47,7 @@ function CustomCard(props) {
         </CardContent>
         <CardActions>
           
-          <Button size="small" variant="raised" color="primary" onClick={handleClick}>
+          <Button size="small" variant="raised" color="primary" onClick={handleClick(props.id)}>
             Learn More
           </Button>
           <Button size="small" variant="outlined" color="secondary">
