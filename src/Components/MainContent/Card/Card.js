@@ -8,7 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import {Link} from "react-router-dom";
-
+import './Card.css';
 const styles = {
   card: {
     maxWidth: "100%"
@@ -49,7 +49,7 @@ function CustomCard(props) {
         <CardActions>
           
           <Button size="small" variant="raised" color="primary">
-            <Link to={newTo}>Learn More</Link>
+            <Link to={newTo}><span className="text">Learn More</span></Link>
           </Button>
           <Button size="small" variant="outlined" color="secondary">
             View on Github

@@ -33,23 +33,23 @@ class ProjectPage extends Component {
 		let BrowserSupportList = [
 			{
 				browserName: "Chrome",
-				support: "true"
+				support: project.browserSupport[0]
 			},
 			{
 				browserName: "Firefox",
-				support: "true"
+				support: project.browserSupport[1]
 			},
 			{
 				browserName: "InternetExplorer",
-				support: "true"
+				support: project.browserSupport[2]
 			},
 			{
 				browserName: "Opera",
-				support: "true"
+				support: project.browserSupport[3]
 			},
 			{
 				browserName: "Edge",
-				support: "true"
+				support: project.browserSupport[4]
 			}
 		];
 		let details = [],
@@ -235,7 +235,7 @@ class BrowserSupport extends Component {
 		const TableCellCheckRow = this.props.list.map(
 			(browserSupport, index) => (
 				<td key={index}>
-					<Checkbox checked={browserSupport.support} />
+					<Checkbox checked={browserSupport.support==="Yes"} />
 				</td>
 			)
 		);
