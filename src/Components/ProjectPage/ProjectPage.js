@@ -16,6 +16,8 @@ class ProjectPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
+		console.log("Constructor started");
+		console.log(props);
 	}
 	componentDidMount() {
 		console.log("Mounting");
