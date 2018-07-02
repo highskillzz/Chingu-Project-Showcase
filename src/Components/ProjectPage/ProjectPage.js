@@ -29,14 +29,7 @@ class ProjectPage extends Component {
 			return <h1>Loading</h1>;
 		}
 
-		//if project loaded, then get all data
-		let BrowserSupportList = getBrowserSupport(project.browserSupport);
-		let keywordsList = project.keywords;
-		let contributorsArray = getContributorsArray(project.contributors);
-		let details=getDetails(project.build,"failing","gitter",contributorsArray.length);
-		let features = project.features;
-		let overviews = getOverviews(project.version,"MIT","4","Github",contributorsArray);
-		let resources = project.resources;
+		//for now using default installation	
 		let installation= [
                 {
                         "title": "Using npm",
@@ -50,11 +43,18 @@ class ProjectPage extends Component {
                         "title": "On deployed version",
                         "code": "https://www.projectongithub.io"
                 }
-        ]
+        ];
+
+        //if project loaded, then get all data
+        let details=getDetails(project.build,"failing","gitter",contributorsArray.length);
+		let overviews = getOverviews(project.version,"MIT","4","Github",contributorsArray);
+		let BrowserSupportList = getBrowserSupport(project.browserSupport);
+		let contributorsArray = getContributorsArray(project.contributors);
+		let keywordsList = project.keywords;
+		let features = project.features;
+		let resources = project.resources;
 		let description = project.description;
 		let title = project.name;
-
-		//functions that render specific components follow
 
 		//overview component is rendered
 		const Overview = overviews.map((detail, index) => (
