@@ -3,8 +3,6 @@ import * as ACTIONS from "../actions/actionTypes";
 
 const projectReducer = (state = {}, action) => {
 	const payload = action.payload;
-	console.log("Inside reducer");
-	console.log(payload);
 	switch (action.type) {
 		case ACTIONS.LIST_PROJECT:
 			//for listing out all projects
@@ -24,7 +22,6 @@ const projectReducer = (state = {}, action) => {
 				state
 			};
 		case ACTIONS.SHOW_PROJECT_FULFILLED:
-		console.log("Project fulfilled");
 			return {
 				...state,
 				projectInfo:payload

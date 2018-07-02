@@ -2,6 +2,7 @@ import * as ACTIONS from "./actionTypes";
 import client from "../client";
 import { getProjectQuery,allProjectsQuery } from "./graphql/queries";
 
+//action for getting complete list of projects
 export function getAllProjects(){
 	return async dispatch=>{
 		console.log("Getting all projects");
@@ -22,10 +23,8 @@ export function getAllProjects(){
 	};
 }
 
+//action for getting single project of specific id
 export function getProject(id) {return async dispatch => {
-
-	// dispatch({ type: ACTIONS.SHOW_PROJECT });
-	console.log("Invoking actions "+id);
 	await Promise.resolve(
 		client.query({
 			query: getProjectQuery,
@@ -43,6 +42,3 @@ export function getProject(id) {return async dispatch => {
 	});
 };
 }
-// export function getProject() {
-// 	return (type: ACTIONS.GET_PROJECT, payload: project);
-// }

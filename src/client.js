@@ -1,3 +1,5 @@
+//client that we use for apollo, that interacts with graphql
+
 import ApolloClient from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';

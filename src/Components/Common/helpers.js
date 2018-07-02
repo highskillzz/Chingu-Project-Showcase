@@ -1,3 +1,5 @@
+//contains all the helper functions for use
+
 function getContributorsArray(contributors){
 	let contributorsArray = [];
 		for (var i = 0; i < contributors.length; i++) {

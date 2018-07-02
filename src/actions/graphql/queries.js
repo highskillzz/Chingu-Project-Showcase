@@ -1,4 +1,8 @@
+//contains the queries for graphql interactions
+
 import gql from "graphql-tag";
+
+//query for getting project with specific id
 const getProjectQuery = gql`
   query($id: ID!) {
     project(id: $id) {
@@ -22,9 +26,8 @@ const getProjectQuery = gql`
     }
   }
 `;
-console.log("Query is");
-console.log(getProjectQuery);
 
+//query for getting all projects
 const allProjectsQuery = gql`
   {
     projects {
