@@ -109,24 +109,24 @@ class ProjectPage extends Component {
 			}
 		];
 		resources = project.resources;
-		// installation= [
-  //               {
-  //                       "title": "Using npm",
-  //                       "code": "npm start"
-  //               },
-  //               {
-  //                       "title": "Using yarn",
-  //                       "code": "yarn run"
-  //               },
-  //               {
-  //                       "title": "On deployed version",
-  //                       "code": "https://www.projectongithub.io"
-  //               }
-  //       ]
-		let install="Paragraphs are separated by a blank line. 2nd paragraph. *Italic*, **bold**, and `monospace`. Itemized lists look like:* this one* that one* the other one Note that --- not considering the asterisk --- the actual text content starts at 4-columns in.";
-		var showdown  = require('showdown'),
-    	converter = new showdown.Converter();
-    	installation = converter.makeHtml(install);
+		installation= [
+                {
+                        "title": "Using npm",
+                        "code": "npm start"
+                },
+                {
+                        "title": "Using yarn",
+                        "code": "yarn run"
+                },
+                {
+                        "title": "On deployed version",
+                        "code": "https://www.projectongithub.io"
+                }
+        ]
+		// let install="Paragraphs are separated by a blank line. 2nd paragraph. *Italic*, **bold**, and `monospace`. Itemized lists look like:* this one* that one* the other one Note that --- not considering the asterisk --- the actual text content starts at 4-columns in.";
+		// var showdown  = require('showdown'),
+  //   	converter = new showdown.Converter();
+  //   	installation = converter.makeHtml(install);
 		description = project.description;
 		title = project.name;
 		const Overview = overviews.map((detail, index) => (

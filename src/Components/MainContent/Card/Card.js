@@ -18,6 +18,10 @@ const styles = {
   }
 };
 
+function handleClick(){
+  console.log("Clicked");
+}
+
 function CustomCard(props) {
   const { classes } = props;
   return (
@@ -42,7 +46,7 @@ function CustomCard(props) {
         </CardContent>
         <CardActions>
           
-          <Button size="small" variant="raised" color="primary">
+          <Button size="small" variant="raised" color="primary" onClick={handleClick}>
             Learn More
           </Button>
           <Button size="small" variant="outlined" color="secondary">
