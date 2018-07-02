@@ -11,116 +11,26 @@ import * as projectActions from "../../actions/showProject";
 import { bindActionCreators } from "redux";
 import Parser from 'html-react-parser';
 import "./ProjectPage.css";
-
-function getContributorsArray(contributors){
-	let contributorsArray = [];
-		for (var i = 0; i < contributors.length; i++) {
-			contributorsArray.push(contributors[i].username);
-		}
-		return contributorsArray;
-}
-
-function getDetails(npm,build,chat,contributors){
-	let details = [
-			{
-				name: "npm",
-				content: npm
-			},
-			{
-				name: "build",
-				content: build
-			},
-			{
-				name: "chat",
-				content: chat
-			},
-			{
-				name: "contributors",
-				content: contributors
-			}
-		];
-	return details;
-}
-
-function getOverviews(version,license,issues,repo,contributorsArray){
-	let overviews = [
-			{
-				name: "Version",
-				content: version
-			},
-			{
-				name: "License",
-				content: "MIT"
-			},
-			{
-				name: "Open Issues",
-				content: "4"
-			},
-			{
-				name: "Repository",
-				content: "Github"
-			},
-			{
-				name: "Collabrators",
-				content: contributorsArray.join()
-			}
-		];
-		return overviews;
-}
-
-function getBrowserSupport(browserSupport){
-	let BrowserSupportList = [
-			{
-				browserName: "Chrome",
-				support: browserSupport[0]
-			},
-			{
-				browserName: "Firefox",
-				support: browserSupport[1]
-			},
-			{
-				browserName: "InternetExplorer",
-				support: browserSupport[2]
-			},
-			{
-				browserName: "Opera",
-				support: browserSupport[3]
-			},
-			{
-				browserName: "Edge",
-				support: browserSupport[4]
-			}
-		];
-		return BrowserSupportList;
-}
+import {getContributorsArray,getOverviews,getDetails,getBrowserSupport} from "../Common/helpers";
 
 class ProjectPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
-		console.log("Constructor started");
-		console.log(props);
 	}
 	componentDidMount() {
-		console.log("Mounting");
 		this.props.getProjectList.getProject(this.props.location.param);
 	}
 	render() {
 		let project = this.props.projectInfo;
-		console.log(project);
+		//if project is still loading, show this
 		if (project===undefined) {
 			console.log("undefined here");
 			return <h1>Loading</h1>;
 		}
+
+		//if project loaded, then get all data
 		let BrowserSupportList = getBrowserSupport(project.browserSupport);
-		// let details = [],
-		// 	features = null,
-		// 	overviews = [],
-		// 	resources = [],
-		// 	installation = [],
-		// 	description = null,
-		// 	title = null,
-		// 	keywordsList = [];
 		let keywordsList = project.keywords;
 		let contributorsArray = getContributorsArray(project.contributors);
 		let details=getDetails(project.build,"failing","gitter",contributorsArray.length);
@@ -141,12 +51,12 @@ class ProjectPage extends Component {
                         "code": "https://www.projectongithub.io"
                 }
         ]
-		// let install="Paragraphs are separated by a blank line. 2nd paragraph. *Italic*, **bold**, and `monospace`. Itemized lists look like:* this one* that one* the other one Note that --- not considering the asterisk --- the actual text content starts at 4-columns in.";
-		// var showdown  = require('showdown'),
-  		// converter = new showdown.Converter();
-  		// installation = converter.makeHtml(install);
 		let description = project.description;
 		let title = project.name;
+
+		//functions that render specific components follow
+
+		//overview component is rendered
 		const Overview = overviews.map((detail, index) => (
 			<OverviewComponent
 				key={index}
