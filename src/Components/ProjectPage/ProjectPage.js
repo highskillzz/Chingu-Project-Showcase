@@ -12,83 +12,41 @@ import { bindActionCreators } from "redux";
 import Parser from 'html-react-parser';
 import "./ProjectPage.css";
 
-class ProjectPage extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {};
-		console.log("Constructor started");
-		console.log(props);
-	}
-	componentDidMount() {
-		console.log("Mounting");
-		this.props.getProjectList.getProject(this.props.location.param);
-	}
-	render() {
-		let project = this.props.projectInfo;
-		console.log(project);
-		if (project===undefined) {
-			console.log("undefined here");
-			return <h1>Loading</h1>;
+function getContributorsArray(contributors){
+	let contributorsArray = [];
+		for (var i = 0; i < contributors.length; i++) {
+			contributorsArray.push(contributors[i].username);
 		}
-		let BrowserSupportList = [
-			{
-				browserName: "Chrome",
-				support: project.browserSupport[0]
-			},
-			{
-				browserName: "Firefox",
-				support: project.browserSupport[1]
-			},
-			{
-				browserName: "InternetExplorer",
-				support: project.browserSupport[2]
-			},
-			{
-				browserName: "Opera",
-				support: project.browserSupport[3]
-			},
-			{
-				browserName: "Edge",
-				support: project.browserSupport[4]
-			}
-		];
-		let details = [],
-			features = null,
-			overviews = [],
-			resources = [],
-			installation = [],
-			description = null,
-			title = null,
-			keywordsList = [];
-		keywordsList = project.keywords;
-		let contributorsArray = [];
-		for (var i = 0; i < project.contributors.length; i++) {
-			contributorsArray.push(project.contributors[i].username);
-		}
-		details = [
+		return contributorsArray;
+}
+
+function getDetails(npm,build,chat,contributors){
+	let details = [
 			{
 				name: "npm",
-				content: "v18.0.0"
+				content: npm
 			},
 			{
 				name: "build",
-				content: project.build
+				content: build
 			},
 			{
 				name: "chat",
-				content: "gitter"
+				content: chat
 			},
 			{
 				name: "contributors",
-				content: contributorsArray.length
-				// content: "4"
+				content: contributors
 			}
 		];
-		features = project.features;
-		overviews = [
+	return details;
+}
+
+function getOverviews(version,license,issues,repo,contributorsArray){
+	let overviews = [
 			{
 				name: "Version",
-				content: project.version
+				content: version
 			},
 			{
 				name: "License",
@@ -107,8 +65,69 @@ class ProjectPage extends Component {
 				content: contributorsArray.join()
 			}
 		];
-		resources = project.resources;
-		installation= [
+		return overviews;
+}
+
+function getBrowserSupport(browserSupport){
+	let BrowserSupportList = [
+			{
+				browserName: "Chrome",
+				support: browserSupport[0]
+			},
+			{
+				browserName: "Firefox",
+				support: browserSupport[1]
+			},
+			{
+				browserName: "InternetExplorer",
+				support: browserSupport[2]
+			},
+			{
+				browserName: "Opera",
+				support: browserSupport[3]
+			},
+			{
+				browserName: "Edge",
+				support: browserSupport[4]
+			}
+		];
+		return BrowserSupportList;
+}
+
+class ProjectPage extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {};
+		console.log("Constructor started");
+		console.log(props);
+	}
+	componentDidMount() {
+		console.log("Mounting");
+		this.props.getProjectList.getProject(this.props.location.param);
+	}
+	render() {
+		let project = this.props.projectInfo;
+		console.log(project);
+		if (project===undefined) {
+			console.log("undefined here");
+			return <h1>Loading</h1>;
+		}
+		let BrowserSupportList = getBrowserSupport(project.browserSupport);
+		// let details = [],
+		// 	features = null,
+		// 	overviews = [],
+		// 	resources = [],
+		// 	installation = [],
+		// 	description = null,
+		// 	title = null,
+		// 	keywordsList = [];
+		let keywordsList = project.keywords;
+		let contributorsArray = getContributorsArray(project.contributors);
+		let details=getDetails(project.build,"failing","gitter",contributorsArray.length);
+		let features = project.features;
+		let overviews = getOverviews(project.version,"MIT","4","Github",contributorsArray);
+		let resources = project.resources;
+		let installation= [
                 {
                         "title": "Using npm",
                         "code": "npm start"
@@ -126,8 +145,8 @@ class ProjectPage extends Component {
 		// var showdown  = require('showdown'),
   		// converter = new showdown.Converter();
   		// installation = converter.makeHtml(install);
-		description = project.description;
-		title = project.name;
+		let description = project.description;
+		let title = project.name;
 		const Overview = overviews.map((detail, index) => (
 			<OverviewComponent
 				key={index}
