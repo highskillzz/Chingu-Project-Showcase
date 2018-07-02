@@ -104,7 +104,7 @@ class ProjectPage extends Component {
 			},
 			{
 				name: "Collabrators",
-				content: contributorsArray
+				content: contributorsArray.join()
 			}
 		];
 		resources = project.resources;
