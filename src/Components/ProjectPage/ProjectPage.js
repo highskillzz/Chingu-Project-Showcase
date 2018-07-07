@@ -46,10 +46,11 @@ class ProjectPage extends Component {
         ];
 
         //if project loaded, then get all data
-        let details=getDetails(project.build,"failing","gitter",contributorsArray.length);
-		let overviews = getOverviews(project.version,"MIT","4","Github",contributorsArray);
+        
 		let BrowserSupportList = getBrowserSupport(project.browserSupport);
 		let contributorsArray = getContributorsArray(project.contributors);
+		let details=getDetails(project.build,"failing","gitter",contributorsArray.length);
+		let overviews = getOverviews(project.version,"MIT","4","Github",contributorsArray);
 		let keywordsList = project.keywords;
 		let features = project.features;
 		let resources = project.resources;
