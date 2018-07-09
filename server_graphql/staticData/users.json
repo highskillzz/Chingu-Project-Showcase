@@ -1,0 +1,20 @@
+[{
+	"_id": ObjectId("5b38d1be566b5126b072820d"),
+	"projects": [],
+	"name": "Anshul Dubey",
+	"username": "Anshul",
+	"password": "$2a$10$wx1Hls5aEPLB.sJfIpiiQ.NioVxQj2PC2NNnUBjbWI7i0ej01yX/.",
+	"email": "ansdffjj@gmail.com",
+	"githubProfile": "Anshul2166",
+	"__v": 0
+},
+{
+	"_id": ObjectId("5b38d1be566b5126b072821e"),
+	"projects": [],
+	"name": "Vikranth",
+	"username": "Vikranth",
+	"password": "$2a$10$wx1Hls5aEPLB.sJfIpiiQ.NioVxQj2PC2NNnUBjbWI7i0ej01yX/.",
+	"email": "random@gmail.com",
+	"githubProfile": "Vikranth",
+	"__v": 0
+}]

@@ -1,0 +1,9 @@
+Use the command one by one on each file
+
+mongoimport --db dbName --collection collectionName --file fileName.json --jsonArray
+
+where dbName->Name of database=chingu_showcase
+	  collectionName->Name of collection(projects,resources,users)
+	  fileName->Name of json file
+	  
+This would generate dummy data
