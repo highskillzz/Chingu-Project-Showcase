@@ -33,7 +33,8 @@ const ProjectSchema = new Schema({
       title:{type:String},
       code:{type:String}
     }
-  ]
+  ],
+  category:{type:String}
 });
 
 // Below is for production

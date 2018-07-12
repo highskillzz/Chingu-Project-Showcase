@@ -1,6 +1,9 @@
 [
         {
-                "contributors": [ObjectId("5b38d1be566b5126b072820d"),ObjectId("5b38d1be566b5126b072821e")],
+                "contributors": [
+                        ObjectId("5b38d1be566b5126b072820d"),
+                        ObjectId("5b38d1be566b5126b072821e")
+                ],
                 "resources": [ObjectId("5b37d705f73d0967565483b1")],
                 "details": [
                         {
@@ -73,10 +76,14 @@
                                 "title": "On deployed version",
                                 "code": "https://www.projectongithub.io"
                         }
-                ]
+                ],
+                "category": "Web Development"
         },
         {
-                "contributors": [ObjectId("5b38d1be566b5126b072820d"),ObjectId("5b38d1be566b5126b072821e")],
+                "contributors": [
+                        ObjectId("5b38d1be566b5126b072820d"),
+                        ObjectId("5b38d1be566b5126b072821e")
+                ],
                 "resources": [ObjectId("5b37d705f73d0967565483b1")],
                 "details": [
                         {
@@ -149,6 +156,7 @@
                                 "title": "On deployed version",
                                 "code": "https://www.projectongithub.io"
                         }
-                ]
+                ],
+                "category": "Web Development"
         }
 ]
