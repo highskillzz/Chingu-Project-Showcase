@@ -21,22 +21,19 @@ class OptionsRow extends Component {
 		super(props);
 		this.state = { value: 0 };
 		this.onClickTab = this.onClickTab.bind(this);
-		this.onChangeTab = this.onChangeTab.bind(this);
 	}
 	
 	//function to change the active tab
 	onClickTab(event,value) {
 		this.setState({ value });
 		console.log(lists[value]);
+		this.props.changeTab(lists[value]);
 	}
 
-	onChangeTab(event,label){
-		console.log(event);
-	}
 	render() {
 		const { value } = this.state;
 		const listCategories = lists.map(name => (
-			<Tab label={name} onChange={this.onChangeTab}/>
+			<Tab label={name}/>
 		));
 		return (
 			<div className="OptionsRow">

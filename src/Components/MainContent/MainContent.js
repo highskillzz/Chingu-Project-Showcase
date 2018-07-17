@@ -19,8 +19,10 @@ class MainContent extends Component {
   }
   render() {
     const { classes } = this.props;
-    const projectList = this.props.projectList;
+    const value=this.props.value;
     console.log("In main page");
+    console.log(value);
+    const projectList = this.props.projectList;
     console.log(projectList);
     if (projectList === undefined) {
       return <h1>Loading</h1>;
