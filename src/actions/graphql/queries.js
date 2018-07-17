@@ -48,6 +48,7 @@ const allProjectsQuery = gql`
       features
       keywords
       browserSupport
+      category
     }
   }
 `;

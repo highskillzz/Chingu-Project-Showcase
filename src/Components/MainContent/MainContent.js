@@ -18,17 +18,23 @@ class MainContent extends Component {
     this.props.getProjectList.getAllProjects();
   }
   render() {
+  	const value=this.props.value;
     const { classes } = this.props;
-    const value=this.props.value;
-    console.log("In main page");
-    console.log(value);
-    const projectList = this.props.projectList;
-    console.log(projectList);
-    if (projectList === undefined) {
+    let allProjectList = this.props.projectList;
+    let projectList=undefined;
+    if (allProjectList === undefined) {
       return <h1>Loading</h1>;
     }
-
-    const projects = projectList.map((project, index) => {
+    if(value=="All"){
+    	projectList=allProjectList;
+    }
+    else{
+    	projectList = allProjectList.filter(project=>{
+    		return project.category==value;
+    	});
+	}
+    console.log(projectList);
+    let projects = projectList.map((project, index) => {
       let contributorsArray = [];
       for (var i = 0; i < project.contributors.length; i++) {
         contributorsArray.push(project.contributors[i].username);
